@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCXNRCF8XL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CCXNRCF8XL');
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>도지민 - IKEA 홈페이지</title>
@@ -11,11 +20,13 @@
 </head>
 <body>
     <div class="popup">
-        이 프로젝트는 구직용 포트폴리오입니다.
-        이케아와 무관함을 알려드립니다.</div>
-        <button>닫기</button>
+        <p>이 프로젝트는 구직용 포트폴리오입니다.<br>이케아와 무관함을 알려드립니다.<br>
+        This project is for job application portfolio.<br>Not an official IKEA website.</p>
+        <button class="popup-close-btn">닫기</button>
+    </div>
+    
     <!-- PC 메인 컨테이너 -->
-    <div class="pC" data-name="PC" data-node-id="12:900">
+    <div class="pc" data-name="PC" data-node-id="12:900">
 
         <!-- 헤더 / 네비게이션 -->
         <header class="container header-container" data-name="Container" data-node-id="81:1539">
@@ -29,33 +40,33 @@
             <!-- 검색창 -->
             <div class="search-box" data-name="검색창" data-node-id="81:1560">
                 <button class="magnifier" data-name="돋보기" data-node-id="81:1571" aria-label="검색">
-                    <img src="https://placehold.co/24x24" alt="">
+                    <img src="https://placehold.co/24x24" alt="검색">
                 </button>
                 <div class="combobox" data-name="Combobox - 제품 및 아이디어, 신제품 검색" data-node-id="81:1561">
                     <input type="search" placeholder="검색어 입력" class="search-input" aria-label="제품 및 아이디어, 신제품 검색">
                 </div>
                 <button class="camera-button" data-name="카메라" data-node-id="81:1564" aria-label="이미지로 검색">
-                    <img src="https://placehold.co/24x24" alt="">
+                    <img src="https://placehold.co/24x24" alt="카메라">
                 </button>
             </div>
 
             <!-- 마이페이지 -->
             <div class="mypage-section" data-name="마이페이지" data-node-id="81:1547">
                 <button class="login-button" data-name="로그인" data-node-id="81:1548">
-                    <img src="https://placehold.co/24x24" alt="" class="sVG">
+                    <img src="https://placehold.co/24x24" alt="로그인 아이콘" class="svg">
                     <span>Hej! 로그인 하기</span>
                 </button>
                 <a href="#" class="link wishlist" data-name="Link - 위시리스트" data-node-id="81:1554" aria-label="위시리스트">
-                    <img src="https://placehold.co/24x24" alt="" class="sVG">
+                    <img src="https://placehold.co/24x24" alt="위시리스트">
                 </a>
                 <a href="#" class="link cart" data-name="Link - 장바구니" data-node-id="81:1557" aria-label="장바구니">
-                    <img src="https://placehold.co/24x24" alt="" class="sVG">
+                    <img src="https://placehold.co/24x24" alt="장바구니">
                 </a>
             </div>
         </header>
 
         <!-- 탭 리스트 -->
-        <nav class="tablist" data-name="Tablist" data-node-id="81:662" role="tablist">
+        <nav class="tablist" data-name="Tablist" data-node-id="81:662" role="tablist" aria-label="주요 메뉴">
             <button class="tab-item active" role="tab" aria-selected="true" data-tab="all-products">
                 <img src="https://placehold.co/32x32" alt="">
                 <span>모든 제품</span>
@@ -86,79 +97,79 @@
             <div class="category-list" data-name="리스트" data-node-id="81:545">
                 <a href="#" class="category-item" data-category="new-collection">
                     <div class="category-icon">
-                        <img src="https://placehold.co/80x80" alt="">
+                        <img src="https://placehold.co/80x80" alt="신제품과 컬렉션">
                     </div>
                     <div class="category-name">신제품과 컬렉션</div>
                 </a>
                 <a href="#" class="category-item" data-category="christmas">
                     <div class="category-icon">
-                        <img src="https://placehold.co/80x80" alt="">
+                        <img src="https://placehold.co/80x80" alt="크리스마스 마켓">
                     </div>
                     <div class="category-name">크리스마스 마켓</div>
                 </a>
                 <a href="#" class="category-item" data-category="storage-furniture">
                     <div class="category-icon">
-                        <img src="https://placehold.co/80x80" alt="">
+                        <img src="https://placehold.co/80x80" alt="수납 가구">
                     </div>
                     <div class="category-name">수납 가구</div>
                 </a>
                 <a href="#" class="category-item" data-category="storage-items">
                     <div class="category-icon">
-                        <img src="https://placehold.co/80x80" alt="">
+                        <img src="https://placehold.co/80x80" alt="수납 용품">
                     </div>
                     <div class="category-name">수납 용품</div>
                 </a>
                 <a href="#" class="category-item" data-category="bed-mattress">
                     <div class="category-icon">
-                        <img src="https://placehold.co/80x80" alt="">
+                        <img src="https://placehold.co/80x80" alt="침대/매트리스">
                     </div>
                     <div class="category-name">침대/매트리스</div>
                 </a>
                 <a href="#" class="category-item" data-category="sofa">
                     <div class="category-icon">
-                        <img src="https://placehold.co/80x80" alt="">
+                        <img src="https://placehold.co/80x80" alt="소파/암체어">
                     </div>
                     <div class="category-name">소파/암체어</div>
                 </a>
                 <a href="#" class="category-item" data-category="table-chair">
                     <div class="category-icon">
-                        <img src="https://placehold.co/80x80" alt="">
+                        <img src="https://placehold.co/80x80" alt="식탁/테이블/의자">
                     </div>
                     <div class="category-name">식탁/테이블/의자</div>
                 </a>
                 <a href="#" class="category-item" data-category="desk">
                     <div class="category-icon">
-                        <img src="https://placehold.co/80x80" alt="">
+                        <img src="https://placehold.co/80x80" alt="책상/사무용의자">
                     </div>
                     <div class="category-name">책상/사무용의자</div>
                 </a>
                 <a href="#" class="category-item" data-category="kitchen-furniture">
                     <div class="category-icon">
-                        <img src="https://placehold.co/80x80" alt="">
+                        <img src="https://placehold.co/80x80" alt="주방가구">
                     </div>
                     <div class="category-name">주방가구</div>
                 </a>
                 <a href="#" class="category-item" data-category="kitchenware">
                     <div class="category-icon">
-                        <img src="https://placehold.co/80x80" alt="">
+                        <img src="https://placehold.co/80x80" alt="주방용품">
                     </div>
                     <div class="category-name">주방용품</div>
                 </a>
                 <a href="#" class="category-item" data-category="lighting">
                     <div class="category-icon">
-                        <img src="https://placehold.co/80x80" alt="">
+                        <img src="https://placehold.co/80x80" alt="조명">
                     </div>
                     <div class="category-name">조명</div>
                 </a>
                 <a href="#" class="category-item" data-category="textile">
                     <div class="category-icon">
-                        <img src="https://placehold.co/80x80" alt="">
+                        <img src="https://placehold.co/80x80" alt="텍스타일/러그">
                     </div>
                     <div class="category-name">텍스타일/러그</div>
                 </a>
                 <a href="#" class="category-item" data-category="curtain">
                     <div class="category-icon">
-                        <img src="https://placehold.co/80x80" alt="">
+                        <img src="https://placehold.co/80x80" alt="커튼/블라인드">
                     </div>
                     <div class="category-name">커튼/블라인드</div>
                 </a>
@@ -171,13 +182,13 @@
                 <div class="container video-container" data-name="Container" data-node-id="81:684">
                     <img src="https://placehold.co/1000x562" alt="이케아 겨울 세일" loading="lazy">
                     <button class="button play-button" data-name="Button" data-node-id="81:687" aria-label="동영상 재생">
-                        <img src="https://placehold.co/40x40" alt="" class="sVG">
+                        <img src="https://placehold.co/40x40" alt="재생" class="svg">
                     </button>
                 </div>
                 <a href="#" class="link overlay-link" data-name="Link" data-node-id="81:692">
                     <div class="background gradient-bg" data-name="Background" data-node-id="81:693">
                         <p>이케아 겨울 세일, 최대 70% 할인!</p>
-                        <img src="https://placehold.co/24x24" alt="" class="sVG">
+                        <img src="https://placehold.co/24x24" alt="더보기" class="svg">
                     </div>
                 </a>
             </article>
@@ -187,7 +198,7 @@
                     <div class="background gradient-bg" data-name="Background" data-node-id="81:700">
                         <span class="background badge new" data-name="Background" data-node-id="81:701">New</span>
                         <p>크리스마스 마켓이 열렸어요!</p>
-                        <img src="https://placehold.co/24x24" alt="" class="sVG">
+                        <img src="https://placehold.co/24x24" alt="더보기" class="svg">
                     </div>
                 </a>
             </article>
@@ -196,7 +207,7 @@
                 <a href="#" class="link overlay-link" data-name="Link" data-node-id="81:708">
                     <div class="background gradient-bg" data-name="Background" data-node-id="81:709">
                         <p>차가운 공기 속, 따뜻한 공간을 위한 제안</p>
-                        <img src="https://placehold.co/24x24" alt="" class="sVG">
+                        <img src="https://placehold.co/24x24" alt="더보기" class="svg">
                     </div>
                 </a>
             </article>
@@ -234,17 +245,17 @@
                             </div>
                             <div class="rating-section">
                                 <div class="stars" aria-label="별점 4.5점">
-                                    <img src="https://placehold.co/90x24" alt="">
+                                    <img src="https://placehold.co/90x24" alt="별점">
                                 </div>
                                 <span class="review-count">(62)</span>
                             </div>
                         </a>
                         <div class="container button-group" data-name="Container" data-node-id="81:798">
                             <button class="button cart-button" aria-label="장바구니에 추가">
-                                <img src="https://placehold.co/24x24" alt="" class="sVG">
+                                <img src="https://placehold.co/24x24" alt="장바구니" class="svg">
                             </button>
                             <button class="button wishlist-button" aria-label="위시리스트에 추가">
-                                <img src="https://placehold.co/24x24" alt="" class="sVG">
+                                <img src="https://placehold.co/24x24" alt="위시리스트" class="svg">
                             </button>
                         </div>
                     </article>
@@ -263,8 +274,8 @@
                             <img src="https://placehold.co/300x250" alt="롯데 광주점 매장" loading="lazy">
                             <span class="background badge new">New</span>
                             <a href="#" class="link news-link">
-                                <p>이케아 롯데 광주점에서 지금 만나요!</p>
-                                <img src="https://placehold.co/24x24" alt="" class="sVG">
+                                <p>이케아에서 지금 만나요!</p>
+                                <img src="https://placehold.co/24x24" alt="더보기" class="svg">
                             </a>
                         </article>
                         <!-- 추가 뉴스 카드들 -->
@@ -280,21 +291,21 @@
                 <section class="family-section">
                     <h3>IKEA Family</h3>
                     <p>지금 IKEA Family에 무료로 가입하고<br>다양한 멤버 전용 혜택을 누리세요.</p>
+                    <button class="button black-button">IKEA Family 가입하기</button>
                     <a href="#" class="link-underline">자세히 보기</a>
-                    <button class="Button black-button">IKEA Family 가입하기</button>
                 </section>
 
                 <!-- IKEA Business Network -->
                 <section class="business-section">
                     <h3>IKEA Business Network</h3>
                     <p>여러분의 더 나은 비즈니스 환경을 위한<br>다양한 혜택들을 받으세요</p>
+                    <button class="button black-button">IKEA Business Network 가입하기</button>
                     <a href="#" class="link-underline">자세히 보기</a>
-                    <button class="Button black-button">IKEA Business Network 가입하기</button>
                 </section>
 
                 <!-- Footer Links -->
-                <nav class="list footer-links" data-name="List" data-node-id="81:1424" role="navigation" aria-label="하단 메뉴">
-                    <div class="item footer-column">
+                <nav class="footer-links" data-name="List" data-node-id="81:1424" role="navigation" aria-label="하단 메뉴">
+                    <div class="footer-column">
                         <h4>고객문의</h4>
                         <ul>
                             <li><a href="#">고객 서비스</a></li>
@@ -308,7 +319,7 @@
                             <li><a href="#">부품 신청</a></li>
                         </ul>
                     </div>
-                    <div class="item footer-column">
+                    <div class="footer-column">
                         <h4>쇼핑하기</h4>
                         <ul>
                             <li><a href="#">쇼핑하기</a></li>
@@ -322,7 +333,7 @@
                             <li><a href="#">기프트 카드</a></li>
                         </ul>
                     </div>
-                    <div class="item footer-column">
+                    <div class="footer-column">
                         <h4>서비스</h4>
                         <ul>
                             <li><a href="#">이케아 서비스</a></li>
@@ -335,7 +346,7 @@
                             <li><a href="#">바이백 서비스</a></li>
                         </ul>
                     </div>
-                    <div class="item footer-column">
+                    <div class="footer-column">
                         <h4>이케아 이야기</h4>
                         <ul>
                             <li><a href="#">브랜드 소개</a></li>
@@ -345,27 +356,27 @@
                             <li><a href="#">채용정보</a></li>
                         </ul>
                     </div>
-                </div>
+                </nav>
 
                 <!-- 소셜 미디어 링크 -->
-                <div class="list social-links" data-name="List" data-node-id="81:1499">
-                    <a href="#" class="item social-icon">
-                        <img src="https://placehold.co/34x34" alt="Facebook" class="sVG">
+                <nav class="social-links" data-name="List" data-node-id="81:1499" aria-label="소셜 미디어">
+                    <a href="#" class="social-icon" aria-label="Facebook">
+                        <img src="https://placehold.co/34x34" alt="Facebook" class="svg">
                     </a>
-                    <a href="#" class="item social-icon">
-                        <img src="https://placehold.co/34x34" alt="Instagram" class="sVG">
+                    <a href="#" class="social-icon" aria-label="Instagram">
+                        <img src="https://placehold.co/34x34" alt="Instagram" class="svg">
                     </a>
-                    <a href="#" class="item social-icon">
-                        <img src="https://placehold.co/34x34" alt="YouTube" class="sVG">
+                    <a href="#" class="social-icon" aria-label="YouTube">
+                        <img src="https://placehold.co/34x34" alt="YouTube" class="svg">
                     </a>
-                    <a href="#" class="item social-icon">
-                        <img src="https://placehold.co/34x34" alt="KakaoTalk" class="sVG">
+                    <a href="#" class="social-icon" aria-label="KakaoTalk">
+                        <img src="https://placehold.co/34x34" alt="KakaoTalk" class="svg">
                     </a>
                 </nav>
 
                 <!-- 언어/국가 선택 -->
                 <button class="button language-selector" data-name="Button dialog - 언어 또는 국가/지역을 변경하세요" aria-label="언어 및 국가 변경">
-                    <img src="https://placehold.co/24x24" alt="" class="sVG">
+                    <img src="https://placehold.co/24x24" alt="언어" class="svg">
                     <span class="country">KR</span>
                     <span class="language">한국어</span>
                 </button>
@@ -384,7 +395,7 @@
                     <p>고객지원센터: 1670-4532</p>
                 </address>
 
-                <nav class="list policy-links" role="navigation" aria-label="정책 및 약관">
+                <nav class="policy-links" role="navigation" aria-label="정책 및 약관">
                     <a href="#">개인정보처리방침</a>
                     <a href="#">쿠키 정책</a>
                     <a href="#">쿠키 설정</a>

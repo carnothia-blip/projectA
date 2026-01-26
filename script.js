@@ -316,3 +316,11 @@ cartButtons.forEach(btn => {
         // updateCartCount(현재개수 + 1);
     });
 });
+
+/* =======popup========= */
+const popupCloseBtn = document.querySelector(".popup-close-btn");
+if (popupCloseBtn) {
+    popupCloseBtn.addEventListener("click", () => {
+        document.querySelector(".popup").style.display = "none";
+    });
+}
