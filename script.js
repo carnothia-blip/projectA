@@ -139,15 +139,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// 동영상 재생 버튼
-const playButtons = document.querySelectorAll('.play-button');
-playButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        console.log('동영상 재생');
-        // 동영상 재생 로직 구현
-    });
-});
-
 // 언어 선택 버튼
 const languageSelector = document.querySelector('.language-selector');
 if (languageSelector) {
@@ -323,4 +314,25 @@ if (popupCloseBtn) {
     popupCloseBtn.addEventListener("click", () => {
         document.querySelector(".popup").style.display = "none";
     });
+}
+
+// Video control
+const videoContainer = document.querySelector('.video-container');
+const video = document.querySelector('.video-container video');
+
+if (videoContainer && video) {
+  // Start playing the video initially
+  video.play().catch(error => {
+    console.log("Autoplay was prevented: ", error);
+    // Autoplay was prevented.
+    // Show a "Play" button to let the user start playback.
+  });
+
+  videoContainer.addEventListener('click', () => {
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+  });
 }
