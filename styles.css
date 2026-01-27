@@ -1,0 +1,1166 @@
+/* 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: white;
+    color: #111;
+    line-height: 1.5;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* PC 메인 컨테이너 */
+.pc {
+    width: 100%;
+    min-height: 100vh;
+    background: white;
+    position: relative;
+}
+
+/* 헤더 / 네비게이션 */
+.header-container {
+    height: auto;
+    padding: 20px 100px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 40px;
+    position: relative;
+}
+
+.ikea-logo {
+    width: 90px;
+    height: 90px;
+    flex-shrink: 0;
+    justify-self: start;
+}
+
+.ikea-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* 검색창 */
+.search-box {
+    flex: 1;
+    max-width: 600px;
+    height: 48px;
+    background: #f5f5f5;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    gap: 10px;
+}
+
+.magnifier {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    order: 2;
+}
+
+.magnifier img {
+    width: 100%;
+    height: 100%;
+}
+
+.combobox {
+    order: 1;
+    flex: 1;
+}
+
+.search-input {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    color: #111;
+    outline: none;
+    padding: 0 10px;
+}
+
+.search-input::placeholder {
+    color: #484848;
+}
+
+.camera-button {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    order: 3;
+}
+
+.camera-button img {
+    width: 100%;
+    height: 100%;
+}
+
+.camera-button:hover {
+    background: #e5e5e5;
+}
+
+/* 마이페이지 */
+.mypage-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+    justify-self: end;
+}
+
+.login-button {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 24px;
+    border-radius: 64px;
+    font-size: 14px;
+    font-weight: 350;
+    color: #111;
+    transition: 0.2s;
+}
+
+.login-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.login-button:hover {
+    background: #f5f5f5;
+}
+
+.wishlist, .cart {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.wishlist img, .cart img {
+    width: 24px;
+    height: 24px;
+}
+
+.wishlist:hover, .cart:hover {
+    background: #f5f5f5;
+}
+
+/* 탭 리스트 */
+.tablist {
+    height: 60px;
+    padding: 0 100px;
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    border-bottom: 1px solid #dfdfdf;
+    scrollbar-width: none;
+}
+
+.tablist::-webkit-scrollbar {
+    display: none;
+}
+
+.tab-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 4px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #767676;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: color 0.2s;
+    position: relative;
+}
+
+.tab-item.active {
+    color: #111;
+}
+
+.tab-item.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #111;
+}
+
+.tab-item:hover {
+    color: #111;
+}
+
+.tab-item img {
+    width: 24px;
+    height: 24px;
+}
+
+/* 카테고리 리스트 */
+.tabpanel {
+    padding: 40px 100px;
+    overflow: hidden;
+}
+
+.category-list {
+    display: flex;
+    gap: 24px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 10px;
+}
+
+.category-list::-webkit-scrollbar {
+    display: none;
+}
+
+.category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    min-width: 100px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.category-item:hover {
+    transform: translateY(-5px);
+}
+
+.category-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #f5f5f5;
+}
+
+.category-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.category-name {
+    font-size: 14px;
+    font-weight: 350;
+    color: #484848;
+    text-align: center;
+    line-height: 1.3;
+}
+
+/* 메인 배너 */
+.main-banner {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 12px;
+    margin: 0 100px;
+    height: 600px;
+    margin-bottom: 80px;
+}
+
+.left-large {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.right-top {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    position: relative;
+    overflow: visible;
+    border-radius: 8px;
+}
+
+.right-bottom {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.background {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+}
+
+.background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.play-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: rgba(17, 17, 17, 0.75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.play-button:hover {
+    background: rgba(17, 17, 17, 0.9);
+}
+
+.play-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.overlay-link {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.gradient-bg {
+    background: linear-gradient(to top, rgba(17, 17, 17, 0.85) 0%, rgba(17, 17, 17, 0.4) 50%, transparent 100%);
+    padding: 30px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.gradient-bg p {
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    line-height: 1.4;
+    flex: 1;
+}
+
+.gradient-bg img {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    color: white;
+    z-index: 3;
+}
+
+.badge.new {
+    background: #ca5008;
+}
+
+.badge.bestseller {
+    background: #e00751;
+}
+
+/* 특가 섹션 */
+.special-price {
+    margin: 0 100px 80px 100px;
+    padding-bottom: 40px;
+}
+
+.special-price h2 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 30px;
+}
+
+.filter-container {
+    margin-bottom: 40px;
+}
+
+.filter-list {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 10px;
+}
+
+.filter-list::-webkit-scrollbar {
+    display: none;
+}
+
+.listitem.button {
+    padding: 12px 24px;
+    border-radius: 64px;
+    border: 2px solid transparent;
+    background: #f5f5f5;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1px;
+    color: #111;
+    white-space: nowrap;
+    transition: all 0.2s;
+}
+
+.listitem.button.active {
+    border-color: #111;
+    background: white;
+}
+
+.listitem.button:hover {
+    background: #e5e5e5;
+}
+
+/* 제품 카드 */
+.products-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.product-card {
+    background: white;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+}
+
+.product-card .badge {
+    top: -10px;
+    right: -10px;
+}
+
+.product-image {
+    width: 100%;
+    aspect-ratio: 1;
+    margin-bottom: 16px;
+    background: #f5f5f5;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+.price-label {
+    font-size: 14px;
+    font-weight: 700;
+    color: #cc0008;
+    line-height: 1.3;
+}
+
+.product-info h3 {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.4;
+    color: #111;
+}
+
+.product-desc {
+    font-weight: 350;
+    display: block;
+    margin-top: 4px;
+}
+
+.price-section {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+}
+
+.currency {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+}
+
+.price {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111;
+    line-height: 1;
+}
+
+.original-price-section {
+    font-size: 12px;
+    font-weight: 350;
+    color: #484848;
+}
+
+.original-price {
+    color: #767676;
+    text-decoration: line-through;
+}
+
+.rating-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stars {
+    height: 20px;
+}
+
+.stars img {
+    height: 100%;
+    width: auto;
+}
+
+.review-count {
+    font-size: 14px;
+    font-weight: 350;
+    color: #484848;
+}
+
+.button-group {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+    align-items: center;
+}
+
+.cart-button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #0058a3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.cart-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.cart-button:hover {
+    background: #004a8c;
+}
+
+.wishlist-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background 0.2s;
+}
+
+.wishlist-button img {
+    width: 24px;
+    height: 24px;
+}
+
+.wishlist-button:hover {
+    background: #f5f5f5;
+}
+
+/* 뉴스 섹션 */
+.news-section {
+    margin: 80px 100px;
+    background: #f5f5f5;
+    padding: 60px;
+    border-radius: 8px;
+}
+
+.news-section h2 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 1.3;
+    margin-bottom: 30px;
+}
+
+.news-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+}
+
+.news-card {
+    position: relative;
+    background: white;
+    border-radius: 4px;
+    overflow: visible;
+    transition: transform 0.2s;
+}
+
+.news-card:hover {
+    transform: translateY(-5px);
+}
+
+.news-card .badge {
+    top: -10px;
+    right: -10px;
+}
+
+.news-card img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+}
+
+.news-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    background: white;
+    gap: 12px;
+}
+
+.news-link p {
+    font-size: 14px;
+    font-weight: 700;
+    color: #111;
+    line-height: 1.4;
+    flex: 1;
+}
+
+.news-link img {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+/* Footer */
+.footer {
+    background: #f5f5f5;
+    padding: 80px 0 50px 0;
+    margin-top: 80px;
+}
+
+.footer-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 100px;
+}
+
+.family-section, .business-section {
+    margin-bottom: 60px;
+}
+
+.family-section h3, .business-section h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 16px;
+}
+
+.family-section p, .business-section p {
+    font-size: 14px;
+    font-weight: 350;
+    color: #484848;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.link-underline {
+    font-size: 14px;
+    font-weight: 350;
+    color: #111;
+    text-decoration: underline;
+    display: inline-block;
+    margin-bottom: 16px;
+    transition: color 0.2s;
+}
+
+.link-underline:hover {
+    color: #0058a3;
+}
+
+.black-button {
+    background: #111;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 64px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1px;
+    transition: 0.2s;
+}
+
+.black-button:hover {
+    background: #000;
+    transform: translateY(-2px);
+}
+
+.footer-links {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.footer-column h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 20px;
+}
+
+.footer-column ul {
+    list-style: none;
+}
+
+.footer-column li {
+    margin-bottom: 12px;
+}
+
+.footer-column a {
+    font-size: 14px;
+    font-weight: 350;
+    color: #484848;
+    transition: color 0.2s;
+}
+
+.footer-column a:hover {
+    color: #111;
+}
+
+.social-links {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 60px;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #dfdfdf;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.social-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+.social-icon:hover {
+    border-color: #111;
+    background: white;
+}
+
+.language-selector {
+    padding: 10px 24px;
+    border: 1px solid #111;
+    border-radius: 64px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    transition: all 0.2s;
+}
+
+.language-selector:hover {
+    background: white;
+}
+
+.language-selector img {
+    width: 20px;
+    height: 20px;
+}
+
+.language-selector .country {
+    padding-left: 12px;
+    border-left: 1px solid #ccc;
+}
+
+.copyright-section {
+    padding-top: 40px;
+    border-top: 1px solid #dfdfdf;
+    margin-bottom: 20px;
+}
+
+.copyright-section p {
+    font-size: 12px;
+    font-weight: 350;
+    color: #484848;
+}
+
+.company-info {
+    margin-bottom: 40px;
+    font-style: normal;
+}
+
+.company-info p {
+    font-size: 12px;
+    font-weight: 350;
+    color: #484848;
+    line-height: 1.6;
+}
+
+.company-info .link {
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+.company-info .link:hover {
+    color: #0058a3;
+}
+
+.policy-links {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding-top: 32px;
+    border-top: 1px solid #dfdfdf;
+}
+
+.policy-links a {
+    font-size: 12px;
+    font-weight: 350;
+    color: #111;
+    transition: color 0.2s;
+}
+
+.policy-links a:hover {
+    color: #0058a3;
+}
+
+/* ============================ */
+/* ============= Popup ======== */
+/* ============================ */
+
+.popup {
+    position: fixed;
+    z-index: 9999;
+    background-color: white;
+    width: 400px;
+    max-width: 90%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 32px 24px;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #111;
+}
+
+.popup p {
+    margin-bottom: 24px;
+    color: #484848;
+}
+
+.popup-close-btn {
+    background: #0058a3;
+    color: white;
+    padding: 12px 32px;
+    border-radius: 64px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.popup-close-btn:hover {
+    background: #004a8c;
+}
+
+/* ============================ */
+/* ======== 반응형 디자인 ====== */
+/* ============================ */
+
+@media (max-width: 1400px) {
+    .header-container {
+        padding: 20px 60px;
+    }
+
+    .tablist,
+    .tabpanel,
+    .special-price,
+    .news-section {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+
+    .main-banner {
+        margin: 0 60px 80px 60px;
+    }
+
+    .footer-container {
+        padding: 0 60px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .main-banner {
+        grid-template-columns: 1fr 1fr;
+        height: auto;
+    }
+
+    .left-large {
+        grid-column: 1 / 3;
+        grid-row: 1 / 2;
+        min-height: 400px;
+    }
+
+    .right-top {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        min-height: 300px;
+    }
+
+    .right-bottom {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+        min-height: 300px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .header-container {
+        padding: 20px 40px;
+        flex-wrap: wrap;
+    }
+
+    .search-box {
+        order: 3;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 16px;
+    }
+
+    .tablist,
+    .tabpanel,
+    .special-price,
+    .news-section {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .main-banner {
+        margin: 0 40px 60px 40px;
+    }
+
+    .footer-container {
+        padding: 0 40px;
+    }
+
+    .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .products-list {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        padding: 16px 24px;
+    }
+
+    .ikea-logo {
+        width: 70px;
+        height: 70px;
+    }
+
+    .mypage-section {
+        gap: 8px;
+    }
+
+    .login-button span {
+        display: none;
+    }
+
+    .tablist,
+    .tabpanel,
+    .special-price,
+    .news-section {
+        padding-left: 24px;
+        padding-right: 24px;
+    }
+
+    .main-banner {
+        margin: 0 24px 40px 24px;
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .left-large,
+    .right-top,
+    .right-bottom {
+        grid-column: 1;
+        grid-row: auto;
+        min-height: 300px;
+    }
+
+    .footer-container {
+        padding: 0 24px;
+        
+    }
+
+    .products-list,
+    .news-list {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 16px;
+    }
+
+    .footer-links {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .category-list {
+        gap: 16px;
+    }
+
+    .category-item {
+        min-width: 80px;
+    }
+
+    .category-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .category-name {
+        font-size: 12px;
+    }
+
+    .special-price h2,
+    .news-section h2 {
+        font-size: 24px;
+    }
+
+    .news-section {
+        padding: 40px 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-container {
+        padding: 12px 16px;
+    }
+
+    .ikea-logo {
+        width: 60px;
+        height: 60px;
+    }
+
+    .tablist,
+    .tabpanel,
+    .special-price {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .main-banner {
+        margin: 0 16px 32px 16px;
+    }
+
+    .news-section {
+        margin: 40px 16px;
+        padding: 32px 16px;
+    }
+
+    .footer-container {
+        padding: 0 16px;
+    }
+
+    .products-list,
+    .news-list {
+        grid-template-columns: 1fr;
+    }
+
+    .special-price h2,
+    .news-section h2 {
+        font-size: 20px;
+    }
+
+    .gradient-bg {
+        padding: 20px 16px;
+    }
+
+    .gradient-bg p {
+        font-size: 16px;
+    }
+
+    .policy-links {
+        gap: 16px;
+    }
+}

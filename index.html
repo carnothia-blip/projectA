@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCXNRCF8XL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-CCXNRCF8XL');
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>도지민 - IKEA 홈페이지</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="popup">
+        <p>이 프로젝트는 구직용 포트폴리오입니다.<br>이케아와 무관함을 알려드립니다.<br>
+        This project is for job application portfolio.<br>Not an official IKEA website.</p>
+        <button class="popup-close-btn">닫기</button>
+    </div>
+    
+    <!-- PC 메인 컨테이너 -->
+    <div class="pc">
+
+        <!-- 헤더 / 네비게이션 -->
+        <header class="container header-container">
+            <!-- 로고 -->
+            <a href="#" class="link ikea-logo">
+                <div class="ikea-svg-container">
+                    <img src="images/이케아흰바탕.png" alt="IKEA 로고" class="ikea-svg">
+                </div>
+            </a>
+
+            <!-- 검색창 -->
+            <div class="search-box">
+                <button class="magnifier" aria-label="검색">
+                    <img src="images/Search.png" alt="검색">
+                </button>
+                <div class="combobox">
+                    <input type="search" placeholder="검색어 입력" class="search-input" aria-label="제품 및 아이디어, 신제품 검색">
+                </div>
+                <button class="camera-button" aria-label="이미지로 검색">
+                    <img src="images/Camera.png" alt="카메라">
+                </button>
+            </div>
+
+            <!-- 마이페이지 -->
+            <div class="mypage-section">
+                <button class="login-button">
+                    <img src="images/User.png" alt="로그인 아이콘" class="svg">
+                    <span>Hej! 로그인 하기</span>
+                </button>
+                <a href="#" class="link wishlist" aria-label="위시리스트">
+                    <img src="images/Heart.png" alt="위시리스트">
+                </a>
+                <a href="#" class="link cart" aria-label="장바구니">
+                    <img src="images/ShoppingBag.png" alt="장바구니">
+                </a>
+            </div>
+        </header>
+
+        <!-- 탭 리스트 -->
+        <nav class="tablist" role="tablist" aria-label="주요 메뉴">
+            <button class="tab-item active" role="tab" aria-selected="true" data-tab="all-products">
+                <img src="images/Box.png" alt="">
+                <span>모든 제품</span>
+            </button>
+            <button class="tab-item" role="tab" aria-selected="false" data-tab="room-shopping">
+                <img src="images/Home.png" alt="">
+                <span>공간별 쇼핑하기</span>
+            </button>
+            <button class="tab-item" role="tab" aria-selected="false" data-tab="special-price">
+                <span>특별한 가격</span>
+            </button>
+            <button class="tab-item" role="tab" aria-selected="false" data-tab="news">
+                <span>새로운 소식</span>
+            </button>
+            <button class="tab-item" role="tab" aria-selected="false" data-tab="ideas">
+                <span>아이디어</span>
+            </button>
+            <button class="tab-item" role="tab" aria-selected="false" data-tab="planning">
+                <span>플래닝 & 스타일링 서비스</span>
+            </button>
+            <button class="tab-item" role="tab" aria-selected="false" data-tab="more">
+                <span>더 보기</span>
+            </button>
+        </nav>
+
+        <!-- 탭패널 - 카테고리 리스트 -->
+        <section class="tabpanel" role="tabpanel">
+            <div class="category-list">
+                <a href="#" class="category-item" data-category="new-collection">
+                    <div class="category-icon">
+                        <img src="images/신제품.jpg" alt="신제품과 컬렉션">
+                    </div>
+                    <div class="category-name">신제품과 컬렉션</div>
+                </a>
+                <a href="#" class="category-item" data-category="storage-furniture">
+                    <div class="category-icon">
+                        <img src="images/수납가구.png" alt="수납 가구">
+                    </div>
+                    <div class="category-name">수납 가구</div>
+                </a>
+                <a href="#" class="category-item" data-category="storage-items">
+                    <div class="category-icon">
+                        <img src="images/수납용품.png" alt="수납 용품">
+                    </div>
+                    <div class="category-name">수납 용품</div>
+                </a>
+                <a href="#" class="category-item" data-category="bed-mattress">
+                    <div class="category-icon">
+                        <img src="images/침대.png" alt="침대/매트리스">
+                    </div>
+                    <div class="category-name">침대/매트리스</div>
+                </a>
+                <a href="#" class="category-item" data-category="sofa">
+                    <div class="category-icon">
+                        <img src="images/소파.png" alt="소파/암체어">
+                    </div>
+                    <div class="category-name">소파/암체어</div>
+                </a>
+                <a href="#" class="category-item" data-category="table-chair">
+                    <div class="category-icon">
+                        <img src="images/의자.png" alt="식탁/테이블/의자">
+                    </div>
+                    <div class="category-name">식탁/테이블/의자</div>
+                </a>
+                <a href="#" class="category-item" data-category="desk">
+                    <div class="category-icon">
+                        <img src="images/사무용책상.png" alt="책상/사무용의자">
+                    </div>
+                    <div class="category-name">책상/사무용의자</div>
+                </a>
+                <a href="#" class="category-item" data-category="kitchen-furniture">
+                    <div class="category-icon">
+                        <img src="images/주방가구.png" alt="주방가구">
+                    </div>
+                    <div class="category-name">주방가구</div>
+                </a>
+                <a href="#" class="category-item" data-category="kitchenware">
+                    <div class="category-icon">
+                        <img src="images/주방용품.png" alt="주방용품">
+                    </div>
+                    <div class="category-name">주방용품</div>
+                </a>
+                <a href="#" class="category-item" data-category="lighting">
+                    <div class="category-icon">
+                        <img src="images/조명.png" alt="조명">
+                    </div>
+                    <div class="category-name">조명</div>
+                </a>
+                <a href="#" class="category-item" data-category="textile">
+                    <div class="category-icon">
+                        <img src="images/텍스타일.png" alt="텍스타일/러그">
+                    </div>
+                    <div class="category-name">텍스타일/러그</div>
+                </a>
+                <a href="#" class="category-item" data-category="curtain">
+                    <div class="category-icon">
+                        <img src="images/커튼.png" alt="커튼/블라인드">
+                    </div>
+                    <div class="category-name">커튼/블라인드</div>
+                </a>
+                                <a href="#" class="category-item" data-category="bathroom">
+                    <div class="category-icon">
+                        <img src="images/욕실.png" alt="욕실">
+                    </div>
+                    <div class="category-name">욕실/화장실 용품</div>
+                </a>
+            </div>
+        </section>
+
+        <!-- 메인 이미지 섹션 -->
+        <section class="section main-banner">
+            <article class="background left-large">
+                <div class="container video-container">
+                    <video src="images/이케아.mp4" alt="이케아 봄 세일" loading="lazy" muted loop></video>
+                </div>
+                <a href="#" class="link overlay-link">
+                    <div class="background gradient-bg">
+                        <p>이케아 봄 세일, 최대 50% 할인!</p>
+                        <img src="images/Right.png" alt="더보기" class="svg">
+                    </div>
+                </a>
+            </article>
+            <article class="background right-top">
+                <img src="images/이달의신제품.png" alt="이달의 신제품" loading="lazy">
+                <a href="#" class="link overlay-link">
+                    <div class="background gradient-bg">
+                        
+                        <p>이달의 신제품</p>
+                        <img src="images/Right.png" alt="더보기" class="svg">
+                    </div>
+                </a>
+            </article>
+            <article class="background right-bottom">
+                <img src="images/따뜻한공기.png" alt="따뜻한 공간을 위한 제안" loading="lazy">
+                <a href="#" class="link overlay-link">
+                    <div class="background gradient-bg">
+                        <p>싱그러운 공기 속, 따뜻한 공간을 위한 제안</p>
+                        <img src="images/Right.png" alt="더보기" class="svg">
+                    </div>
+                </a>
+            </article>
+        </section>
+
+        <!-- 놓치면 아쉬운 특가 섹션 -->
+        <section class="section special-price">
+            <h2>놓치면 아쉬운 특가</h2>
+            <div class="container filter-container">
+                <nav class="list filter-list" role="navigation" aria-label="제품 필터">
+                    <button class="listitem button active" data-filter="new-price">더 낮은 새로운 가격</button>
+                    <button class="listitem button" data-filter="family">IKEA Family 혜택</button>
+                    <button class="listitem button" data-filter="last-chance">마지막 기회</button>
+                    <button class="listitem button" data-filter="lowest">가장 낮은 가격</button>
+                </nav>
+            </div>
+            <div class="container products-container">
+                <div class="list products-list">
+                    <!-- 제품 1 -->
+                    <article class="listitem product-card">
+                        <div class="background product-image">
+                            <img src="https://placehold.co/250x250" alt="NÅLBLECKA 주방 조리대 정리용품" loading="lazy">
+                        </div>
+                        
+                        <a href="#" class="link product-info">
+                            <p class="price-label">더 낮은 새로운 가격</p>
+                            <h3>NÅLBLECKA 놀블레카<br><span class="product-desc">주방 조리대 정리용품, 38x13x28 cm</span></h3>
+                            <div class="price-section">
+                                <span class="currency">￦</span>
+                                <span class="price">19,900</span>
+                            </div>
+                            <div class="original-price-section">
+                                <span>기존가: </span>
+                                <span class="original-price">￦ 24,900</span>
+                            </div>
+                            <div class="rating-section">
+                                <div class="stars" aria-label="별점 4.5점">
+                                    <img src="https://placehold.co/90x24" alt="별점">
+                                </div>
+                                <span class="review-count">(62)</span>
+                            </div>
+                        </a>
+                        <div class="container button-group">
+                            <button class="button cart-button" aria-label="장바구니에 추가">
+                                <img src="https://placehold.co/24x24" alt="장바구니" class="svg">
+                            </button>
+                            <button class="button wishlist-button" aria-label="위시리스트에 추가">
+                                <img src="https://placehold.co/24x24" alt="위시리스트" class="svg">
+                            </button>
+                        </div>
+                    </article>
+                    <!-- 추가 제품들 생략 -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 한 눈에 보는 이케아 소식 -->
+        <section class="section news-section">
+            <div class="section mask-section">
+                <h2>한 눈에 보는 이케아 소식</h2>
+                <div class="container news-container">
+                    <div class="list news-list">
+                        <article class="listitem news-card">
+                            <img src="https://placehold.co/300x250" alt="롯데 광주점 매장" loading="lazy">
+                            
+                            <a href="#" class="link news-link">
+                                <p>이케아에서 지금 만나요!</p>
+                                <img src="images/Right.png" alt="더보기" class="svg">
+                            </a>
+                        </article>
+                        <!-- 추가 뉴스 카드들 -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container footer-container">
+                <!-- IKEA Family -->
+                <section class="family-section">
+                    <h3>IKEA Family</h3>
+                    <p>지금 IKEA Family에 무료로 가입하고<br>다양한 멤버 전용 혜택을 누리세요.</p>
+                    <a href="#" class="link-underline">자세히 보기</a><br>
+                    <button class="button black-button">IKEA Family 가입하기</button>
+                </section>
+
+                <!-- IKEA Business Network -->
+                <section class="business-section">
+                    <h3>IKEA Business Network</h3>
+                    <p>여러분의 더 나은 비즈니스 환경을 위한<br>다양한 혜택들을 받으세요</p>
+                    <a href="#" class="link-underline">자세히 보기</a><br>
+                    <button class="button black-button">IKEA Business Network 가입하기</button>
+                </section>
+
+                <!-- Footer Links -->
+                <nav class="footer-links" role="navigation" aria-label="하단 메뉴">
+                    <div class="footer-column">
+                        <h4>고객문의</h4>
+                        <ul>
+                            <li><a href="#">고객 서비스</a></li>
+                            <li><a href="#">자주 묻는 질문</a></li>
+                            <li><a href="#">고객지원센터</a></li>
+                            <li><a href="#">배송조회</a></li>
+                            <li><a href="#">교환환불</a></li>
+                            <li><a href="#">품질보증</a></li>
+                            <li><a href="#">제품리콜</a></li>
+                            <li><a href="#">피드백</a></li>
+                            <li><a href="#">부품 신청</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>쇼핑하기</h4>
+                        <ul>
+                            <li><a href="#">쇼핑하기</a></li>
+                            <li><a href="#">전화 주문</a></li>
+                            <li><a href="#">IKEA for Business</a></li>
+                            <li><a href="#">셀프 플래닝</a></li>
+                            <li><a href="#">이케아 모바일 앱</a></li>
+                            <li><a href="#">제품 사용 팁 / 가이드</a></li>
+                            <li><a href="#">브로슈어 / 제품 구매 안내</a></li>
+                            <li><a href="#">결제 옵션</a></li>
+                            <li><a href="#">기프트 카드</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>서비스</h4>
+                        <ul>
+                            <li><a href="#">이케아 서비스</a></li>
+                            <li><a href="#">배송 서비스</a></li>
+                            <li><a href="#">조립 서비스</a></li>
+                            <li><a href="#">설치 서비스</a></li>
+                            <li><a href="#">주방 서비스</a></li>
+                            <li><a href="#">구매 상담 서비스</a></li>
+                            <li><a href="#">공간 스타일링 서비스</a></li>
+                            <li><a href="#">바이백 서비스</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>이케아 이야기</h4>
+                        <ul>
+                            <li><a href="#">브랜드 소개</a></li>
+                            <li><a href="#">집에서의 생활</a></li>
+                            <li><a href="#">지속가능한 생활</a></li>
+                            <li><a href="#">뉴스룸</a></li>
+                            <li><a href="#">채용정보</a></li>
+                        </ul>
+                    </div>
+                </nav>
+
+                <!-- 소셜 미디어 링크 -->
+                <nav class="social-links" aria-label="소셜 미디어">
+                    <a href="#" class="social-icon" aria-label="Facebook">
+                        <img src="images/Facebook.png" alt="Facebook" class="svg">
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Instagram">
+                        <img src="images/Instagram.png" alt="Instagram" class="svg">
+                    </a>
+                    <a href="#" class="social-icon" aria-label="YouTube">
+                        <img src="images/YouTube.png" alt="YouTube" class="svg">
+                    </a>
+                    <a href="#" class="social-icon" aria-label="Twitter">
+                        <img src="images/Twitter.png" alt="Twitter" class="svg">
+                    </a>
+                </nav>
+
+                <!-- 언어/국가 선택 -->
+                <button class="button language-selector" aria-label="언어 및 국가 변경">
+                    <img src="images/Globe.png" alt="언어" class="svg">
+                    <span class="country">KR</span>
+                    <span class="language">한국어</span>
+                </button>
+
+                <!-- 저작권 정보 -->
+                <div class="copyright-section">
+                    <p>© Inter IKEA Systems B.V 1999-2025</p>
+                </div>
+
+                <address class="company-info">
+                    <p>이케아코리아 유한회사</p>
+                    <p>주소: (우) 14352 경기도 광명시 일직로 17, 1층(일직동) 이케아 광명점</p>
+                    <p>사업자 등록번호: 106-86-82871 <a href="#" class="link">사업자정보확인</a></p>
+                    <p>대표자: 이사벨 푸치 팔렘</p>
+                    <p>통신판매업 신고: 2018-경기광명-0209</p>
+                    <p>고객지원센터: 1670-4532</p>
+                </address>
+
+                <nav class="policy-links" role="navigation" aria-label="정책 및 약관">
+                    <a href="#">개인정보처리방침</a>
+                    <a href="#">쿠키 정책</a>
+                    <a href="#">쿠키 설정</a>
+                    <a href="#">웹사이트 이용약관</a>
+                    <a href="#">Responsible disclosure</a>
+                </nav>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
