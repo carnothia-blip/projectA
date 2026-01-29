@@ -32,10 +32,22 @@ a {
 
 /* PC 메인 컨테이너 */
 .pc {
-    width: 100%;
+    /* 페이지 콘텐츠가 화면의 약 75%만 차지하도록 중앙 정렬 */
+    width: 75vw;
+    max-width: 1400px; /* 너무 넓어지지 않도록 제한 */
+    margin: 0 auto;
     min-height: 100vh;
     background: white;
     position: relative;
+    transition: width 200ms ease;
+}
+
+@media (max-width: 1200px) {
+    .pc { width: 92vw; max-width: none; }
+}
+
+@media (max-width: 480px) {
+    .pc { width: 100vw; }
 }
 
 /* 헤더 / 네비게이션 */
@@ -289,8 +301,12 @@ a {
     grid-template-rows: 1fr 1fr;
     gap: 12px;
     margin: 0 100px;
-    height: 600px;
+    /* 높이를 너비에 맞춰 비율로 계산합니다 (고정 px 제거) */
+    aspect-ratio: 16 / 6; /* 전체 배너의 가로:세로 비율 — 너비에 따라 높이 결정 */
+    width: 100%;
+    max-height: 80vh;
     margin-bottom: 80px;
+    min-height: 0;
 }
 
 .left-large {
@@ -299,14 +315,22 @@ a {
     position: relative;
     overflow: hidden;
     border-radius: 8px;
+    /* 왼쪽 큰 카드가 너비에 따라 비율 유지 */
+    aspect-ratio: 16 / 9;
+    align-self: stretch;
+    min-height: 0;
 }
 
 .right-top {
     grid-column: 2 / 3;
     grid-row: 1 / 2;
     position: relative;
-    overflow: visible;
+    overflow: hidden;
     border-radius: 8px;
+    /* 오른쪽 카드들은 좌우 비율 유지 */
+    aspect-ratio: 4 / 3;
+    align-self: stretch;
+    min-height: 0;
 }
 
 .right-bottom {
@@ -315,6 +339,9 @@ a {
     position: relative;
     overflow: hidden;
     border-radius: 8px;
+    aspect-ratio: 4 / 3;
+    align-self: stretch;
+    min-height: 0;
 }
 
 .background {
@@ -322,12 +349,21 @@ a {
     width: 100%;
     height: 100%;
     background: #f5f5f5;
+    min-height: 0;
 }
 
 .background img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
+    max-width: none;
+}
+
+/* 큰 화면에서 비율을 조금 더 여유있게 유지 */
+@media (min-width: 1600px) {
+    .main-banner { aspect-ratio: 16 / 5.5; }
 }
 
 .video-container {
@@ -845,11 +881,36 @@ a {
     border-left: 1px solid #ccc;
 }
 
+.language-wrap { position: relative; display: inline-block; }
+.lang-menu {
+    position: absolute;
+    right: 0;
+    margin-top: 10px;
+    background: white;
+    border: 1px solid #e6e6e6;
+    box-shadow: 0 8px 24px rgba(17,17,17,0.08);
+    border-radius: 8px;
+    min-width: 180px;
+    padding: 6px;
+    list-style: none;
+    z-index: 60;
+}
+.lang-option {
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #111;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.lang-option[aria-checked="true"] { font-weight: 700; background: #f5f5f5; }
+.lang-option:focus,
+.lang-option:hover { background: #f5f5f5; outline: none; }
+
 .copyright-section {
     padding-top: 40px;
     border-top: 1px solid #dfdfdf;
     margin-bottom: 20px;
-}
+} 
 
 .copyright-section p {
     font-size: 12px;
@@ -969,25 +1030,27 @@ a {
 @media (max-width: 1200px) {
     .main-banner {
         grid-template-columns: 1fr 1fr;
-        height: auto;
+        /* 모바일/태블릿에서는 전체 배너 비율을 더 세로쪽으로 변경 */
+        aspect-ratio: 16 / 9;
+        margin: 0 60px 80px 60px;
     }
 
     .left-large {
         grid-column: 1 / 3;
         grid-row: 1 / 2;
-        min-height: 400px;
+        aspect-ratio: 16 / 9;
     }
 
     .right-top {
         grid-column: 1 / 2;
         grid-row: 2 / 3;
-        min-height: 300px;
+        aspect-ratio: 4 / 3;
     }
 
     .right-bottom {
         grid-column: 2 / 3;
         grid-row: 2 / 3;
-        min-height: 300px;
+        aspect-ratio: 4 / 3;
     }
 }
 

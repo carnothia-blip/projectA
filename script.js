@@ -140,11 +140,83 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // 언어 선택 버튼
-const languageSelector = document.querySelector('.language-selector');
-if (languageSelector) {
-    languageSelector.addEventListener('click', () => {
-        console.log('언어 선택 다이얼로그 열기');
-        // 언어 선택 다이얼로그 로직 구현
+const languageBtn = document.getElementById('langBtn');
+const langMenu = document.getElementById('langMenu');
+const langOpts = document.querySelectorAll('.lang-option');
+
+if (languageBtn && langMenu) {
+    const closeMenu = () => {
+        languageBtn.setAttribute('aria-expanded', 'false');
+        langMenu.hidden = true;
+    };
+
+    const openMenu = () => {
+        languageBtn.setAttribute('aria-expanded', 'true');
+        langMenu.hidden = false;
+        // 포커스가 첫 선택 항목으로 이동
+        const checked = langMenu.querySelector('[aria-checked="true"]');
+        (checked || langMenu.querySelector('.lang-option')).focus();
+    };
+
+    languageBtn.addEventListener('click', (e) => {
+        const isOpen = languageBtn.getAttribute('aria-expanded') === 'true';
+        (isOpen ? closeMenu() : openMenu());
+    });
+
+    // 메뉴 외 클릭 시 닫기
+    document.addEventListener('click', (e) => {
+        if (!languageBtn.contains(e.target) && !langMenu.contains(e.target)) closeMenu();
+    });
+
+    // 옵션 선택 처리
+    langOpts.forEach(opt => {
+        opt.addEventListener('click', () => selectLang(opt));
+        opt.addEventListener('keydown', (ev) => {
+            if (ev.key === 'Enter' || ev.key === ' ') {
+                ev.preventDefault();
+                selectLang(opt);
+            }
+            if (ev.key === 'ArrowDown') {
+                ev.preventDefault();
+                (opt.nextElementSibling || langOpts[0]).focus();
+            }
+            if (ev.key === 'ArrowUp') {
+                ev.preventDefault();
+                (opt.previousElementSibling || langOpts[langOpts.length-1]).focus();
+            }
+            if (ev.key === 'Escape') {
+                closeMenu();
+                languageBtn.focus();
+            }
+        });
+    });
+
+    function selectLang(opt) {
+        const country = opt.dataset.country;
+        const lang = opt.dataset.lang;
+        // UI 업데이트
+        document.querySelector('.language-selector .country').textContent = country;
+        document.querySelector('.language-selector .language').textContent = opt.textContent.split('—')[1].trim();
+        // aria 업데이트
+        langOpts.forEach(o => o.setAttribute('aria-checked', 'false'));
+        opt.setAttribute('aria-checked', 'true');
+        // 문서의 lang 속성 업데이트 (간단 적용)
+        try { document.documentElement.lang = lang; } catch (e) { /* no-op */ }
+        // 닫기
+        closeMenu();
+        languageBtn.focus();
+        console.log('언어 선택:', country, lang);
+    }
+
+    // 키보드로 버튼에서 바로 열기
+    languageBtn.addEventListener('keydown', (ev) => {
+        if (ev.key === 'ArrowDown' || ev.key === 'Enter' || ev.key === ' ') {
+            ev.preventDefault();
+            openMenu();
+        }
+        if (ev.key === 'Escape') {
+            closeMenu();
+        }
     });
 }
 
