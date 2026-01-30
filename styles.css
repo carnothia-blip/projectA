@@ -1,4 +1,4 @@
-/* 초기화 */
+﻿/* Reset */
 * {
     margin: 0;
     padding: 0;
@@ -30,11 +30,11 @@ a {
     color: inherit;
 }
 
-/* PC 메인 컨테이너 */
+
 .pc {
-    /* 페이지 콘텐츠가 화면의 약 75%만 차지하도록 중앙 정렬 */
-    width: 75vw;
-    max-width: 1400px; /* 너무 넓어지지 않도록 제한 */
+    /* Main Container */
+    width: 95vw;
+    max-width: 1400px; 
     margin: 0 auto;
     min-height: 100vh;
     background: white;
@@ -42,18 +42,11 @@ a {
     transition: width 200ms ease;
 }
 
-@media (max-width: 1200px) {
-    .pc { width: 92vw; max-width: none; }
-}
 
-@media (max-width: 480px) {
-    .pc { width: 100vw; }
-}
-
-/* 헤더 / 네비게이션 */
+/* Header / Navigation */
 .header-container {
     height: auto;
-    padding: 20px 100px;
+    padding: 20px 2.5%;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: center;
@@ -74,7 +67,8 @@ a {
     object-fit: contain;
 }
 
-/* 검색창 */
+
+/* Search Box */
 .search-box {
     flex: 1;
     max-width: 600px;
@@ -139,7 +133,8 @@ a {
     background: #e5e5e5;
 }
 
-/* 마이페이지 */
+
+/* My Page */
 .mypage-section {
     display: flex;
     align-items: center;
@@ -188,13 +183,16 @@ a {
     background: #f5f5f5;
 }
 
-/* 탭 리스트 */
+
+/* Tab List */
 .tablist {
     height: 60px;
-    padding: 0 100px;
+    padding: 0 2.5%;
     display: flex;
     gap: 24px;
     overflow-x: auto;
+    white-space: nowrap;
+    
     border-bottom: 1px solid #dfdfdf;
     scrollbar-width: none;
 }
@@ -240,9 +238,10 @@ a {
     height: 24px;
 }
 
-/* 카테고리 리스트 */
+
+/* Category List */
 .tabpanel {
-    padding: 40px 100px;
+    padding: 40px 2.5%;
     overflow: hidden;
 }
 
@@ -294,19 +293,18 @@ a {
     line-height: 1.3;
 }
 
-/* 메인 배너 */
+
+/* Main Banner */
 .main-banner {
     display: grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: repeat(2, minmax(0, 1fr));
     gap: 12px;
-    margin: 0 100px;
-    /* 높이를 너비에 맞춰 비율로 계산합니다 (고정 px 제거) */
-    aspect-ratio: 16 / 6; /* 전체 배너의 가로:세로 비율 — 너비에 따라 높이 결정 */
-    width: 100%;
-    max-height: 80vh;
+    padding: 0 5%;
+    height: auto;
+    aspect-ratio: auto;
     margin-bottom: 80px;
-    min-height: 0;
+    
 }
 
 .left-large {
@@ -315,7 +313,7 @@ a {
     position: relative;
     overflow: hidden;
     border-radius: 8px;
-    /* 왼쪽 큰 카드가 너비에 따라 비율 유지 */
+    
     aspect-ratio: 16 / 9;
     align-self: stretch;
     min-height: 0;
@@ -327,7 +325,7 @@ a {
     position: relative;
     overflow: hidden;
     border-radius: 8px;
-    /* 오른쪽 카드들은 좌우 비율 유지 */
+    
     aspect-ratio: 4 / 3;
     align-self: stretch;
     min-height: 0;
@@ -358,10 +356,10 @@ a {
     height: 100%;
     object-fit: cover;
     object-position: center;
-    max-width: none;
+    max-width: 100%;
 }
 
-/* 큰 화면에서 비율을 조금 더 여유있게 유지 */
+
 @media (min-width: 1600px) {
     .main-banner { aspect-ratio: 16 / 5.5; }
 }
@@ -453,10 +451,11 @@ a {
     background: #e00751;
 }
 
-/* 특가 섹션 */
+
+/* Special Price Section */
 .special-price {
-    margin: 0 100px 80px 100px;
-    padding-bottom: 40px;
+    padding: 0 2.5% 40px 2.5%;
+    margin-bottom: 80px;
 }
 
 .special-price h2 {
@@ -505,13 +504,14 @@ a {
     background: #e5e5e5;
 }
 
-/* 제품 카드 */
+
 .products-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 24px;
 }
 
+/* Product Card */
 .product-card {
     background: white;
     position: relative;
@@ -664,9 +664,10 @@ a {
     background: #f5f5f5;
 }
 
-/* 뉴스 섹션 */
+
+/* News Section */
 .news-section {
-    margin: 80px 100px;
+    margin: 80px 2.5%;
     background: #f5f5f5;
     padding: 60px;
     border-radius: 8px;
@@ -732,6 +733,7 @@ a {
     flex-shrink: 0;
 }
 
+
 /* Footer */
 .footer {
     background: #f5f5f5;
@@ -742,7 +744,7 @@ a {
 .footer-container {
     max-width: 1600px;
     margin: 0 auto;
-    padding: 0 100px;
+    padding: 0 2.5%;
 }
 
 .family-section, .business-section {
@@ -884,8 +886,7 @@ a {
 .language-wrap { position: relative; display: inline-block; }
 .lang-menu {
     position: absolute;
-    right: 0;
-    margin-top: 10px;
+    margin-top: -30px;
     background: white;
     border: 1px solid #e6e6e6;
     box-shadow: 0 8px 24px rgba(17,17,17,0.08);
@@ -958,10 +959,10 @@ a {
     color: #0058a3;
 }
 
-/* ============================ */
-/* ============= Popup ======== */
-/* ============================ */
 
+
+
+/* Popup */
 .popup {
     position: fixed;
     z-index: 9999;
@@ -1001,9 +1002,10 @@ a {
     background: #004a8c;
 }
 
-/* ============================ */
-/* ======== 반응형 디자인 ====== */
-/* ============================ */
+
+
+
+
 
 @media (max-width: 1400px) {
     .header-container {
@@ -1027,10 +1029,11 @@ a {
     }
 }
 
+
 @media (max-width: 1200px) {
     .main-banner {
         grid-template-columns: 1fr 1fr;
-        /* 모바일/태블릿에서는 전체 배너 비율을 더 세로쪽으로 변경 */
+        
         aspect-ratio: 16 / 9;
         margin: 0 60px 80px 60px;
     }
@@ -1053,6 +1056,7 @@ a {
         aspect-ratio: 4 / 3;
     }
 }
+
 
 @media (max-width: 1024px) {
     .header-container {
@@ -1092,25 +1096,46 @@ a {
     }
 }
 
+
 @media (max-width: 768px) {
+    .pc {
+        width: 98vw;
+        max-width: none;
+    }
+
     .header-container {
         padding: 16px 24px;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        align-items: center;
     }
 
     .ikea-logo {
         width: 70px;
         height: 70px;
+        justify-self: center;
+    }
+
+    .search-box {
+        order: 3;
+        width: 100%;
+        max-width: none;
     }
 
     .mypage-section {
         gap: 8px;
+        justify-self: center;
     }
 
     .login-button span {
         display: none;
     }
 
-    .tablist,
+    .tablist {
+        padding: 0 24px;
+        gap: 12px;
+    }
+
     .tabpanel,
     .special-price,
     .news-section {
@@ -1121,7 +1146,11 @@ a {
     .main-banner {
         margin: 0 24px 40px 24px;
         grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
         gap: 12px;
+        aspect-ratio: auto;
+        width: 100%;
+        padding: 0;
     }
 
     .left-large,
@@ -1129,12 +1158,18 @@ a {
     .right-bottom {
         grid-column: 1;
         grid-row: auto;
+        aspect-ratio: 16 / 9;
         min-height: 300px;
+    }
+
+    .main-banner .background img,
+    .main-banner .video-container video {
+        height: auto;
+        object-fit: cover;
     }
 
     .footer-container {
         padding: 0 24px;
-        
     }
 
     .products-list,
@@ -1172,8 +1207,10 @@ a {
 
     .news-section {
         padding: 40px 24px;
+        margin: 80px 24px;
     }
 }
+
 
 @media (max-width: 480px) {
     .header-container {
@@ -1227,3 +1264,419 @@ a {
         gap: 16px;
     }
 }
+
+
+@media (max-width: 768px) {
+    .pc {
+        width: 98vw;
+        max-width: none;
+    }
+
+    
+    .header-container {
+        grid-template-columns: 1fr;
+        padding: 12px 4%;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .ikea-logo {
+        justify-self: center;
+        width: 72px;
+        height: 72px;
+    }
+
+    .search-box {
+        order: 3;
+        width: 100%;
+        max-width: none;
+    }
+
+    .mypage-section {
+        justify-self: center;
+    }
+
+    .tablist {
+        padding: 0 4%;
+        gap: 12px;
+    }
+
+    .tabpanel {
+        padding: 24px 4%;
+    }
+
+    
+    .main-banner {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        padding: 0 4%;
+        aspect-ratio: auto;
+        width: 100%;
+    }
+
+    .left-large,
+    .right-top,
+    .right-bottom {
+        grid-column: auto;
+        grid-row: auto;
+        aspect-ratio: 16 / 9;
+    }
+
+    .main-banner .background img,
+    .main-banner .video-container video {
+        height: auto;
+        object-fit: cover;
+    }
+
+    .special-price,
+    .news-section,
+    .footer-container {
+        padding-left: 4%;
+        padding-right: 4%;
+    }
+}
+
+
+@media (max-width: 1400px) {
+    .header-container {
+        padding: 20px 60px;
+    }
+
+    .tablist,
+    .tabpanel,
+    .special-price,
+    .news-section {
+        padding-left: 60px;
+        padding-right: 60px;
+    }
+
+    .main-banner {
+        margin: 0 60px 80px 60px;
+    }
+
+    .footer-container {
+        padding: 0 60px;
+    }
+}
+
+
+@media (max-width: 1200px) {
+    .main-banner {
+        grid-template-columns: 1fr 1fr;
+        
+        margin: 0 60px 80px 60px;
+    }
+
+    .left-large {
+        grid-column: 1 / 3;
+        grid-row: 1 / 2;
+        aspect-ratio: 16 / 9;
+    }
+
+    .right-top {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+        aspect-ratio: 4 / 3;
+    }
+
+    .right-bottom {
+        grid-column: 2 / 3;
+        grid-row: 2 / 3;
+        aspect-ratio: 4 / 3;
+    }
+}
+
+
+@media (max-width: 1024px) {
+    .header-container {
+        padding: 20px 40px;
+        flex-wrap: wrap;
+    }
+
+    .search-box {
+        order: 3;
+        width: 100%;
+        max-width: 100%;
+        margin-top: 16px;
+    }
+
+    .tablist,
+    .tabpanel,
+    .special-price,
+    .news-section {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .main-banner {
+        margin: 0 40px 60px 40px;
+    }
+
+    .footer-container {
+        padding: 0 40px;
+    }
+
+    .footer-links {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .products-list {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    }
+}
+
+
+@media (max-width: 768px) {
+    .pc {
+        width: 98vw;
+        max-width: none;
+    }
+
+    .header-container {
+        padding: 16px 24px;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .ikea-logo {
+        width: 70px;
+        height: 70px;
+        justify-self: center;
+    }
+
+    .search-box {
+        order: 3;
+        width: 100%;
+        max-width: none;
+    }
+
+    .mypage-section {
+        gap: 8px;
+        justify-self: center;
+    }
+
+    .login-button span {
+        display: none;
+    }
+
+    .tablist {
+        padding: 0 24px;
+        gap: 12px;
+    }
+
+    .tabpanel,
+    .special-price,
+    .news-section {
+        padding-left: 24px;
+        padding-right: 24px;
+        
+    }
+
+    .main-banner {
+        margin: 0 24px 40px 24px;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 12px;
+        aspect-ratio: auto;
+        width: 93%;
+        padding: 0;
+    }
+
+    .left-large,
+    .right-top,
+    .right-bottom {
+        grid-column: 1;
+        grid-row: auto;
+        aspect-ratio: 16 / 9;
+        min-height: 300px;
+    }
+
+    .main-banner .background img,
+    .main-banner .video-container video {
+        height: -webkit-fill-abailable;
+        object-fit: cover;
+    }
+
+    .footer-container {
+        padding: 0 24px;
+    }
+
+    .products-list,
+    .news-list {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 16px;
+    }
+
+    .footer-links {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .category-list {
+        gap: 16px;
+    }
+
+    .category-item {
+        min-width: 80px;
+    }
+
+    .category-icon {
+        width: 70px;
+        height: 70px;
+    }
+
+    .category-name {
+        font-size: 12px;
+    }
+
+    .special-price h2,
+    .news-section h2 {
+        font-size: 24px;
+    }
+
+    .news-section {
+        padding: 40px 24px;
+        margin: 80px 24px;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .pc {
+        width: 100vw;
+        max-width: none;
+    }
+
+    .header-container {
+        padding: 12px 16px;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .ikea-logo {
+        width: 60px;
+        height: 60px;
+        justify-self: center;
+    }
+
+    .search-box {
+        order: 3;
+        width: 100%;
+        max-width: none;
+    }
+
+    .mypage-section {
+        justify-self: center;
+    }
+
+    .tablist {
+        padding: 0 16px;
+        gap: 12px;
+    }
+
+    .tabpanel,
+    .special-price {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .main-banner {
+        margin: 0 16px 32px 16px;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 12px;
+        aspect-ratio: auto;
+        width: calc(100% - 32px);
+        padding: 0;
+    }
+
+    .left-large,
+    .right-top,
+    .right-bottom {
+        grid-column: 1;
+        grid-row: auto;
+        aspect-ratio: 16 / 9;
+        min-height: 250px;
+    }
+
+    .main-banner .background img,
+    .main-banner .video-container video {
+        height: auto;
+        object-fit: cover;
+        max-width: 100%;
+    }
+
+    .news-section {
+        margin: 40px 16px;
+        padding: 32px 16px;
+    }
+
+    .footer-container {
+        padding: 0 16px;
+    }
+
+    .products-list,
+    .news-list {
+        grid-template-columns: 1fr;
+    }
+
+    .special-price h2,
+    .news-section h2 {
+        font-size: 20px;
+    }
+
+    .gradient-bg {
+        padding: 20px 16px;
+    }
+
+    .gradient-bg p {
+        font-size: 16px;
+    }
+
+    .policy-links {
+        gap: 16px;
+    }
+}
+
+
+@media (max-width: 360px) {
+    .header-container {
+        padding: 10px 12px;
+        gap: 8px;
+    }
+
+    .ikea-logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .tablist {
+        padding: 0 12px;
+        gap: 8px;
+    }
+
+    .main-banner {
+        margin: 0 12px 24px 12px;
+        width: calc(100% - 24px);
+    }
+
+    .left-large,
+    .right-top,
+    .right-bottom {
+        min-height: 200px;
+    }
+
+    .tabpanel,
+    .special-price,
+    .news-section,
+    .footer-container {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+}
+
+
+
+
