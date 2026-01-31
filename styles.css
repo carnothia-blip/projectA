@@ -603,14 +603,9 @@ a {
     gap: 8px;
 }
 
-.stars {
-    height: 20px;
-}
-
-.stars img {
-    height: 100%;
-    width: auto;
-}
+/* 기존 이미지 기반 별점 스타일 - 사용 안 함 (새로운 별점 시스템으로 대체됨) */
+/* .stars { height: 20px; } */
+/* .stars img { height: 100%; width: auto; } */
 
 .review-count {
     font-size: 14px;
@@ -1680,3 +1675,52 @@ a {
 
 
 
+
+/* ========================================
+   별점 시스템 (Star Rating System)
+   ======================================== */
+
+.star-rating-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.star-rating {
+    position: relative;
+    display: inline-block;
+    font-size: 18px;
+    line-height: 1;
+}
+
+.stars-outer {
+    color: #dfdfdf;
+    white-space: nowrap;
+    position: relative;
+    display: inline-block;
+}
+
+.stars-outer .star {
+    display: inline-block;
+}
+
+.stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0%;
+    color: #111;
+}
+
+.stars-inner .star {
+    display: inline-block;
+}
+
+.rating-number {
+    font-weight: 600;
+    font-size: 14px;
+    color: #111;
+}

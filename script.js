@@ -408,3 +408,25 @@ if (videoContainer && video) {
     }
   });
 }
+/* ========================================
+   별점 시스템 (Star Rating System)
+   ======================================== */
+
+// 페이지 로드 시 모든 별점 업데이트
+document.addEventListener('DOMContentLoaded', function() {
+    const starsInnerElements = document.querySelectorAll('.stars-inner');
+    
+    starsInnerElements.forEach(function(element) {
+        const rating = parseFloat(element.getAttribute('data-rating'));
+        
+        if (!isNaN(rating)) {
+            // 5점 만점 기준 백분율 계산
+            const starPercentage = (rating / 5) * 100;
+            
+            // CSS width 반영
+            element.style.width = Math.round(starPercentage) + '%';
+        }
+    });
+    
+    console.log('별점 시스템 초기화 완료');
+});
