@@ -526,12 +526,16 @@ a {
 }
 
 .product-image {
-    width: 100%;
+    width: 310px;
+    height: 310px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
     aspect-ratio: 1;
     margin-bottom: 16px;
     background: #f5f5f5;
     border-radius: 4px;
-    overflow: hidden;
 }
 
 .product-image img {
