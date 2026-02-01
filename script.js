@@ -114,27 +114,14 @@ wishlistButtons.forEach(btn => {
     });
 });
 
-// 카테고리 리스트 가로 스크롤 (마우스 휠)
-const categoryList = document.querySelector('.category-list');
-if (categoryList) {
-    categoryList.addEventListener('wheel', (e) => {
+['.tablist', '.category-list', '.filter-list'].forEach(selector => {
+    const el = document.querySelector(selector);
+    if (!el) return;
+
+    el.addEventListener('wheel', e => {
         if (e.deltaY !== 0) {
             e.preventDefault();
-            categoryList.scrollLeft += e.deltaY;
-        }
-    });
-}
-
-// 부드러운 스크롤
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            el.scrollLeft += e.deltaY;
         }
     });
 });
