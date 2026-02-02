@@ -114,37 +114,96 @@ wishlistButtons.forEach(btn => {
     });
 });
 
-// 카테고리 리스트 가로 스크롤 (마우스 휠)
-const categoryList = document.querySelector('.category-list');
-if (categoryList) {
-    categoryList.addEventListener('wheel', (e) => {
+['.tablist', '.category-list', '.filter-list'].forEach(selector => {
+    const el = document.querySelector(selector);
+    if (!el) return;
+
+    el.addEventListener('wheel', e => {
         if (e.deltaY !== 0) {
             e.preventDefault();
-            categoryList.scrollLeft += e.deltaY;
-        }
-    });
-}
-
-// 부드러운 스크롤
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
+            el.scrollLeft += e.deltaY;
         }
     });
 });
 
 // 언어 선택 버튼
-const languageSelector = document.querySelector('.language-selector');
-if (languageSelector) {
-    languageSelector.addEventListener('click', () => {
-        console.log('언어 선택 다이얼로그 열기');
-        // 언어 선택 다이얼로그 로직 구현
+const languageBtn = document.getElementById('langBtn');
+const langMenu = document.getElementById('langMenu');
+const langOpts = document.querySelectorAll('.lang-option');
+
+if (languageBtn && langMenu) {
+    const closeMenu = () => {
+        languageBtn.setAttribute('aria-expanded', 'false');
+        langMenu.hidden = true;
+    };
+
+    const openMenu = () => {
+        languageBtn.setAttribute('aria-expanded', 'true');
+        langMenu.hidden = false;
+        // 포커스가 첫 선택 항목으로 이동
+        const checked = langMenu.querySelector('[aria-checked="true"]');
+        (checked || langMenu.querySelector('.lang-option')).focus();
+    };
+
+    languageBtn.addEventListener('click', (e) => {
+        const isOpen = languageBtn.getAttribute('aria-expanded') === 'true';
+        (isOpen ? closeMenu() : openMenu());
+    });
+
+    // 메뉴 외 클릭 시 닫기
+    document.addEventListener('click', (e) => {
+        if (!languageBtn.contains(e.target) && !langMenu.contains(e.target)) closeMenu();
+    });
+
+    // 옵션 선택 처리
+    langOpts.forEach(opt => {
+        opt.addEventListener('click', () => selectLang(opt));
+        opt.addEventListener('keydown', (ev) => {
+            if (ev.key === 'Enter' || ev.key === ' ') {
+                ev.preventDefault();
+                selectLang(opt);
+            }
+            if (ev.key === 'ArrowDown') {
+                ev.preventDefault();
+                (opt.nextElementSibling || langOpts[0]).focus();
+            }
+            if (ev.key === 'ArrowUp') {
+                ev.preventDefault();
+                (opt.previousElementSibling || langOpts[langOpts.length-1]).focus();
+            }
+            if (ev.key === 'Escape') {
+                closeMenu();
+                languageBtn.focus();
+            }
+        });
+    });
+
+    function selectLang(opt) {
+        const country = opt.dataset.country;
+        const lang = opt.dataset.lang;
+        // UI 업데이트
+        document.querySelector('.language-selector .country').textContent = country;
+        document.querySelector('.language-selector .language').textContent = opt.textContent.split('—')[1].trim();
+        // aria 업데이트
+        langOpts.forEach(o => o.setAttribute('aria-checked', 'false'));
+        opt.setAttribute('aria-checked', 'true');
+        // 문서의 lang 속성 업데이트 (간단 적용)
+        try { document.documentElement.lang = lang; } catch (e) { /* no-op */ }
+        // 닫기
+        closeMenu();
+        languageBtn.focus();
+        console.log('언어 선택:', country, lang);
+    }
+
+    // 키보드로 버튼에서 바로 열기
+    languageBtn.addEventListener('keydown', (ev) => {
+        if (ev.key === 'ArrowDown' || ev.key === 'Enter' || ev.key === ' ') {
+            ev.preventDefault();
+            openMenu();
+        }
+        if (ev.key === 'Escape') {
+            closeMenu();
+        }
     });
 }
 
@@ -336,3 +395,25 @@ if (videoContainer && video) {
     }
   });
 }
+/* ========================================
+   별점 시스템 (Star Rating System)
+   ======================================== */
+
+// 페이지 로드 시 모든 별점 업데이트
+document.addEventListener('DOMContentLoaded', function() {
+    const starsInnerElements = document.querySelectorAll('.stars-inner');
+    
+    starsInnerElements.forEach(function(element) {
+        const rating = parseFloat(element.getAttribute('data-rating'));
+        
+        if (!isNaN(rating)) {
+            // 5점 만점 기준 백분율 계산
+            const starPercentage = (rating / 5) * 100;
+            
+            // CSS width 반영
+            element.style.width = Math.round(starPercentage) + '%';
+        }
+    });
+    
+    console.log('별점 시스템 초기화 완료');
+});

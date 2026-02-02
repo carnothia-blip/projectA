@@ -1,16 +1,16 @@
-
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-CCXNRCF8XL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-CCXNRCF8XL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-  gtag('config', 'G-CCXNRCF8XL');
-</script>
+        gtag('config', 'G-CCXNRCF8XL');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>도지민 - IKEA 홈페이지</title>
@@ -18,23 +18,71 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <!-- 별점 시스템 스타일 -->
+    <style>
+        .star-rating-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+
+        .star-rating {
+            position: relative;
+            display: inline-block;
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        .stars-outer {
+            color: #dfdfdf;
+            white-space: nowrap;
+            position: relative;
+            display: inline-block;
+        }
+
+        .stars-outer .star {
+            display: inline-block;
+        }
+
+        .stars-inner {
+            position: absolute;
+            top: 0;
+            left: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 0%;
+            color: #111;
+        }
+
+        .stars-inner .star {
+            display: inline-block;
+        }
+
+        .rating-number {
+            font-weight: 600;
+            font-size: 14px;
+            color: #111;
+        }
+    </style>
 </head>
+
 <body>
     <div class="popup">
         <p>이 프로젝트는 구직용 포트폴리오입니다.<br>이케아와 무관함을 알려드립니다.<br>
-        This project is for job application portfolio.<br>Not an official IKEA website.</p>
+            This project is for job application portfolio.<br>Not an official IKEA website.</p>
         <button class="popup-close-btn">닫기</button>
     </div>
-    
+
     <!-- PC 메인 컨테이너 -->
     <div class="pc">
 
         <!-- 헤더 / 네비게이션 -->
         <header class="container header-container">
             <!-- 로고 -->
-            <a href="#" class="link ikea-logo">
+            <a href="https://carnothia-blip.github.io/projectA/" class="link ikea-logo">
                 <div class="ikea-svg-container">
-                    <img src="images/이케아흰바탕.png" alt="IKEA 로고" class="ikea-svg">
+                    <img src="images/ikeawhite.png" alt="IKEA 로고" class="ikea-svg">
                 </div>
             </a>
 
@@ -98,79 +146,79 @@
             <div class="category-list">
                 <a href="#" class="category-item" data-category="new-collection">
                     <div class="category-icon">
-                        <img src="images/신제품.jpg" alt="신제품과 컬렉션">
+                        <img src="images/newproduct.jpg" alt="신제품과 컬렉션">
                     </div>
                     <div class="category-name">신제품과 컬렉션</div>
                 </a>
                 <a href="#" class="category-item" data-category="storage-furniture">
                     <div class="category-icon">
-                        <img src="images/수납가구.png" alt="수납 가구">
+                        <img src="images/drawer.png" alt="수납 가구">
                     </div>
                     <div class="category-name">수납 가구</div>
                 </a>
                 <a href="#" class="category-item" data-category="storage-items">
                     <div class="category-icon">
-                        <img src="images/수납용품.png" alt="수납 용품">
+                        <img src="images/receipt.png" alt="수납 용품">
                     </div>
                     <div class="category-name">수납 용품</div>
                 </a>
                 <a href="#" class="category-item" data-category="bed-mattress">
                     <div class="category-icon">
-                        <img src="images/침대.png" alt="침대/매트리스">
+                        <img src="images/bed.png" alt="침대/매트리스">
                     </div>
                     <div class="category-name">침대/매트리스</div>
                 </a>
                 <a href="#" class="category-item" data-category="sofa">
                     <div class="category-icon">
-                        <img src="images/소파.png" alt="소파/암체어">
+                        <img src="images/sofa.png" alt="소파/암체어">
                     </div>
                     <div class="category-name">소파/암체어</div>
                 </a>
                 <a href="#" class="category-item" data-category="table-chair">
                     <div class="category-icon">
-                        <img src="images/의자.png" alt="식탁/테이블/의자">
+                        <img src="images/chair.png" alt="식탁/테이블/의자">
                     </div>
                     <div class="category-name">식탁/테이블/의자</div>
                 </a>
                 <a href="#" class="category-item" data-category="desk">
                     <div class="category-icon">
-                        <img src="images/사무용책상.png" alt="책상/사무용의자">
+                        <img src="images/desk.png" alt="책상/사무용의자">
                     </div>
                     <div class="category-name">책상/사무용의자</div>
                 </a>
                 <a href="#" class="category-item" data-category="kitchen-furniture">
                     <div class="category-icon">
-                        <img src="images/주방가구.png" alt="주방가구">
+                        <img src="images/kitchenfurniture.png" alt="주방가구">
                     </div>
                     <div class="category-name">주방가구</div>
                 </a>
                 <a href="#" class="category-item" data-category="kitchenware">
                     <div class="category-icon">
-                        <img src="images/주방용품.png" alt="주방용품">
+                        <img src="images/bowl.png" alt="주방용품">
                     </div>
                     <div class="category-name">주방용품</div>
                 </a>
                 <a href="#" class="category-item" data-category="lighting">
                     <div class="category-icon">
-                        <img src="images/조명.png" alt="조명">
+                        <img src="images/light2.png" alt="조명">
                     </div>
                     <div class="category-name">조명</div>
                 </a>
                 <a href="#" class="category-item" data-category="textile">
                     <div class="category-icon">
-                        <img src="images/텍스타일.png" alt="텍스타일/러그">
+                        <img src="images/textile.png" alt="텍스타일/러그">
                     </div>
                     <div class="category-name">텍스타일/러그</div>
                 </a>
                 <a href="#" class="category-item" data-category="curtain">
                     <div class="category-icon">
-                        <img src="images/커튼.png" alt="커튼/블라인드">
+                        <img src="images/curtain.png" alt="커튼/블라인드">
                     </div>
                     <div class="category-name">커튼/블라인드</div>
                 </a>
-                                <a href="#" class="category-item" data-category="bathroom">
+                <a href="#" class="category-item" data-category="bathroom">
                     <div class="category-icon">
-                        <img src="images/욕실.png" alt="욕실">
+                        <img src="images/bathroom.png" alt="욕실">
                     </div>
                     <div class="category-name">욕실/화장실 용품</div>
                 </a>
@@ -181,7 +229,7 @@
         <section class="section main-banner">
             <article class="background left-large">
                 <div class="container video-container">
-                    <video src="images/이케아.mp4" alt="이케아 봄 세일" loading="lazy" muted loop></video>
+                    <video src="images/ikea.mp4" alt="이케아 봄 세일" loading="lazy" muted loop></video>
                 </div>
                 <a href="#" class="link overlay-link">
                     <div class="background gradient-bg">
@@ -191,17 +239,17 @@
                 </a>
             </article>
             <article class="background right-top">
-                <img src="images/이달의신제품.png" alt="이달의 신제품" loading="lazy">
+                <img src="images/newthismonth.png" alt="이달의 신제품" loading="lazy">
                 <a href="#" class="link overlay-link">
                     <div class="background gradient-bg">
-                        
+
                         <p>이달의 신제품</p>
                         <img src="images/Right.png" alt="더보기" class="svg">
                     </div>
                 </a>
             </article>
             <article class="background right-bottom">
-                <img src="images/따뜻한공기.png" alt="따뜻한 공간을 위한 제안" loading="lazy">
+                <img src="images/warmair.png" alt="따뜻한 공간을 위한 제안" loading="lazy">
                 <a href="#" class="link overlay-link">
                     <div class="background gradient-bg">
                         <p>싱그러운 공기 속, 따뜻한 공간을 위한 제안</p>
@@ -227,9 +275,9 @@
                     <!-- 제품 1 -->
                     <article class="listitem product-card">
                         <div class="background product-image">
-                            <img src="https://placehold.co/250x250" alt="NÅLBLECKA 주방 조리대 정리용품" loading="lazy">
+                            <img src="images/kitchenthing.png" alt="NÅLBLECKA 주방 조리대 정리용품" loading="lazy">
                         </div>
-                        
+
                         <a href="#" class="link product-info">
                             <p class="price-label">더 낮은 새로운 가격</p>
                             <h3>NÅLBLECKA 놀블레카<br><span class="product-desc">주방 조리대 정리용품, 38x13x28 cm</span></h3>
@@ -242,22 +290,263 @@
                                 <span class="original-price">￦ 24,900</span>
                             </div>
                             <div class="rating-section">
-                                <div class="stars" aria-label="별점 4.5점">
-                                    <img src="https://placehold.co/90x24" alt="별점">
+                                <div class="star-rating-container">
+                                    <div class="star-rating">
+                                        <div class="stars-outer">
+                                            <span class="star">★</span><span class="star">★</span><span
+                                                class="star">★</span><span class="star">★</span><span
+                                                class="star">★</span>
+                                            <div class="stars-inner" data-rating="4.5">
+                                                <span class="star">★</span><span class="star">★</span><span
+                                                    class="star">★</span><span class="star">★</span><span
+                                                    class="star">★</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="rating-number">4.5</span>
                                 </div>
                                 <span class="review-count">(62)</span>
                             </div>
                         </a>
                         <div class="container button-group">
                             <button class="button cart-button" aria-label="장바구니에 추가">
-                                <img src="https://placehold.co/24x24" alt="장바구니" class="svg">
+                                <img src="images/ShoppingBag.png" alt="장바구니" class="svg">
                             </button>
                             <button class="button wishlist-button" aria-label="위시리스트에 추가">
-                                <img src="https://placehold.co/24x24" alt="위시리스트" class="svg">
+                                <img src="images/Heart.png" alt="위시리스트" class="svg">
                             </button>
                         </div>
                     </article>
                     <!-- 추가 제품들 생략 -->
+                    <!-- 제품 2 -->
+                    <article class="listitem product-card">
+                        <div class="background product-image">
+                            <img src="images/kart.png" alt="KUNGSFORS 쿵스포르스" loading="lazy">
+                        </div>
+
+                        <a href="#" class="link product-info">
+                            <p class="price-label">더 낮은 새로운 가격</p>
+                            <h3>KUNGSFORS 쿵스포르스<br><span class="product-desc">주방카트, 60x40 cm</span></h3>
+                            <div class="price-section">
+                                <span class="currency">￦</span>
+                                <span class="price">149,000</span>
+                            </div>
+                            <div class="original-price-section">
+                                <span>기존가: </span>
+                                <span class="original-price">￦ 179,000</span>
+                            </div>
+                            <div class="rating-section">
+                                <div class="star-rating-container">
+                                    <div class="star-rating">
+                                        <div class="stars-outer">
+                                            <span class="star">★</span><span class="star">★</span><span
+                                                class="star">★</span><span class="star">★</span><span
+                                                class="star">★</span>
+                                            <div class="stars-inner" data-rating="3.9">
+                                                <span class="star">★</span><span class="star">★</span><span
+                                                    class="star">★</span><span class="star">★</span><span
+                                                    class="star">★</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="rating-number">3.9</span>
+                                </div>
+                                <span class="review-count">(57)</span>
+                            </div>
+                        </a>
+                        <div class="container button-group">
+                            <button class="button cart-button" aria-label="장바구니에 추가">
+                                <img src="images/ShoppingBag.png" alt="장바구니" class="svg">
+                            </button>
+                            <button class="button wishlist-button" aria-label="위시리스트에 추가">
+                                <img src="images/Heart.png" alt="위시리스트" class="svg">
+                            </button>
+                        </div>
+                    </article>
+                    <!-- 추가 제품들 생략 -->
+                    <!-- 제품 3 -->
+                    <article class="listitem product-card">
+                        <div class="background product-image">
+                            <img src="images/locknlock.png" alt="SILVTJÄRN 실브셰른" loading="lazy">
+                        </div>
+
+                        <a href="#" class="link product-info">
+                            <p class="price-label">더 낮은 새로운 가격</p>
+                            <h3>SILVTJÄRN 실브셰른<br><span class="product-desc">보관용기</span></h3>
+                            <div class="price-section">
+                                <span class="currency">￦</span>
+                                <span class="price">4,900</span>
+                            </div>
+                            <div class="original-price-section">
+                                <span>기존가: </span>
+                                <span class="original-price">￦ 5,900</span>
+                            </div>
+                            <div class="rating-section">
+                                <div class="star-rating-container">
+                                    <div class="star-rating">
+                                        <div class="stars-outer">
+                                            <span class="star">★</span><span class="star">★</span><span
+                                                class="star">★</span><span class="star">★</span><span
+                                                class="star">★</span>
+                                            <div class="stars-inner" data-rating="3.3">
+                                                <span class="star">★</span><span class="star">★</span><span
+                                                    class="star">★</span><span class="star">★</span><span
+                                                    class="star">★</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="rating-number">3.3</span>
+                                </div>
+                                <span class="review-count">(106)</span>
+                            </div>
+                        </a>
+                        <div class="container button-group">
+                            <button class="button cart-button" aria-label="장바구니에 추가">
+                                <img src="images/ShoppingBag.png" alt="장바구니" class="svg">
+                            </button>
+                            <button class="button wishlist-button" aria-label="위시리스트에 추가">
+                                <img src="images/Heart.png" alt="위시리스트" class="svg">
+                            </button>
+                        </div>
+                    </article>
+                    <!-- 추가 제품들 생략 -->
+                    <!-- 제품 4 -->
+                    <article class="listitem product-card">
+                        <div class="background product-image">
+                            <img src="images/cutleries.png" alt="FABLER 파블레르" loading="lazy">
+                        </div>
+
+                        <a href="#" class="link product-info">
+                            <p class="price-label">더 낮은 새로운 가격</p>
+                            <h3>FABLER 파블레르<br><span class="product-desc">식기도구 3종</span></h3>
+                            <div class="price-section">
+                                <span class="currency">￦</span>
+                                <span class="price">5,900</span>
+                            </div>
+                            <div class="original-price-section">
+                                <span>기존가: </span>
+                                <span class="original-price">￦ 6,900</span>
+                            </div>
+                            <div class="rating-section">
+                                <div class="star-rating-container">
+                                    <div class="star-rating">
+                                        <div class="stars-outer">
+                                            <span class="star">★</span><span class="star">★</span><span
+                                                class="star">★</span><span class="star">★</span><span
+                                                class="star">★</span>
+                                            <div class="stars-inner" data-rating="3.8">
+                                                <span class="star">★</span><span class="star">★</span><span
+                                                    class="star">★</span><span class="star">★</span><span
+                                                    class="star">★</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="rating-number">3.8</span>
+                                </div>
+                                <span class="review-count">(399)</span>
+                            </div>
+                        </a>
+                        <div class="container button-group">
+                            <button class="button cart-button" aria-label="장바구니에 추가">
+                                <img src="images/ShoppingBag.png" alt="장바구니" class="svg">
+                            </button>
+                            <button class="button wishlist-button" aria-label="위시리스트에 추가">
+                                <img src="images/Heart.png" alt="위시리스트" class="svg">
+                            </button>
+                        </div>
+                    </article>
+                    <!-- 추가 제품들 생략 -->
+                    <!-- 제품 5 -->
+                    <article class="listitem product-card">
+                        <div class="background product-image">
+                            <img src="images/clock.png" alt="PLUTTIS 플루티스" loading="lazy">
+                        </div>
+
+                        <a href="#" class="link product-info">
+                            <p class="price-label">더 낮은 새로운 가격</p>
+                            <h3>PLUTTIS 플루티스<br><span class="product-desc">벽시계, 블랙, 28cm</span></h3>
+                            <div class="price-section">
+                                <span class="currency">￦</span>
+                                <span class="price">7,900</span>
+                            </div>
+                            <div class="original-price-section">
+                                <span>기존가: </span>
+                                <span class="original-price">￦ 8,900</span>
+                            </div>
+                            <div class="rating-section">
+                                <div class="star-rating-container">
+                                    <div class="star-rating">
+                                        <div class="stars-outer">
+                                            <span class="star">★</span><span class="star">★</span><span
+                                                class="star">★</span><span class="star">★</span><span
+                                                class="star">★</span>
+                                            <div class="stars-inner" data-rating="4.7">
+                                                <span class="star">★</span><span class="star">★</span><span
+                                                    class="star">★</span><span class="star">★</span><span
+                                                    class="star">★</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="rating-number">4.7</span>
+                                </div>
+                                <span class="review-count">(399)</span>
+                            </div>
+                        </a>
+                        <div class="container button-group">
+                            <button class="button cart-button" aria-label="장바구니에 추가">
+                                <img src="images/ShoppingBag.png" alt="장바구니" class="svg">
+                            </button>
+                            <button class="button wishlist-button" aria-label="위시리스트에 추가">
+                                <img src="images/Heart.png" alt="위시리스트" class="svg">
+                            </button>
+                        </div>
+                    </article>
+                    <!-- 제품 6 -->
+                    <article class="listitem product-card">
+                        <div class="background product-image">
+                            <img src="images/light.png" alt="NYMÅNE 뉘모네" loading="lazy">
+                        </div>
+
+                        <a href="#" class="link product-info">
+                            <p class="price-label">더 낮은 새로운 가격</p>
+                            <h3>NYMÅNE 뉘모네<br><span class="product-desc">플로어스탠드/독서등</span></h3>
+                            <div class="price-section">
+                                <span class="currency">￦</span>
+                                <span class="price">49,900</span>
+                            </div>
+                            <div class="original-price-section">
+                                <span>기존가: </span>
+                                <span class="original-price">￦ 59,900</span>
+                            </div>
+                            <div class="rating-section">
+                                <div class="star-rating-container">
+                                    <div class="star-rating">
+                                        <div class="stars-outer">
+                                            <span class="star">★</span><span class="star">★</span><span
+                                                class="star">★</span><span class="star">★</span><span
+                                                class="star">★</span>
+                                            <div class="stars-inner" data-rating="4.0">
+                                                <span class="star">★</span><span class="star">★</span><span
+                                                    class="star">★</span><span class="star">★</span><span
+                                                    class="star">★</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <span class="rating-number">4.0</span>
+                                </div>
+                                <span class="review-count">(423)</span>
+                            </div>
+                        </a>
+                        <div class="container button-group">
+                            <button class="button cart-button" aria-label="장바구니에 추가">
+                                <img src="images/ShoppingBag.png" alt="장바구니" class="svg">
+                            </button>
+                            <button class="button wishlist-button" aria-label="위시리스트에 추가">
+                                <img src="images/Heart.png" alt="위시리스트" class="svg">
+                            </button>
+                        </div>
+                    </article>
+
                 </div>
             </div>
         </section>
@@ -265,15 +554,55 @@
         <!-- 한 눈에 보는 이케아 소식 -->
         <section class="section news-section">
             <div class="section mask-section">
-                <h2>한 눈에 보는 이케아 소식</h2>
+                <h2>보다 지속가능한 집을 만드는 팁과 아이디어</h2>
                 <div class="container news-container">
                     <div class="list news-list">
                         <article class="listitem news-card">
-                            <img src="https://placehold.co/300x250" alt="롯데 광주점 매장" loading="lazy">
-                            
+                            <img src="images/keep1.png" alt="이케아 매장" loading="lazy">
+
                             <a href="#" class="link news-link">
-                                <p>이케아에서 지금 만나요!</p>
-                                <img src="images/Right.png" alt="더보기" class="svg">
+                                <p>지속 가능한 생활을 위한 아이디어</p>
+                                <img src="images/right-dark.png" alt="더보기" class="svg">
+                            </a>
+                        </article>
+                        <article class="listitem news-card">
+                            <img src="images/keep2.png" alt="이케아 매장" loading="lazy">
+
+                            <a href="#" class="link news-link">
+                                <p>보다 지속가능한 방식으로 음식을 먹을 수 있는 간편한 방법</p>
+                                <img src="images/right-dark.png" alt="더보기" class="svg">
+                            </a>
+                        </article>
+                        <article class="listitem news-card">
+                            <img src="images/keep3.png" alt="이케아 매장" loading="lazy">
+
+                            <a href="#" class="link news-link">
+                                <p>집에서 에너지를 절약하는 빠른 방법</p>
+                                <img src="images/right-dark.png" alt="더보기" class="svg">
+                            </a>
+                        </article>
+                        <article class="listitem news-card">
+                            <img src="images/keep4.png" alt="이케아 매장" loading="lazy">
+
+                            <a href="#" class="link news-link">
+                                <p>집에서 쓰레기를 줄이는 간단한 방법</p>
+                                <img src="images/right-dark.png" alt="더보기" class="svg">
+                            </a>
+                        </article>
+                        <article class="listitem news-card">
+                            <img src="images/keep5.png" alt="이케아 매장" loading="lazy">
+
+                            <a href="#" class="link news-link">
+                                <p>가구의 수명을 연장하는 간단한 방법</p>
+                                <img src="images/right-dark.png" alt="더보기" class="svg">
+                            </a>
+                        </article>
+                        <article class="listitem news-card">
+                            <img src="images/keep6.png" alt="이케아 매장" loading="lazy">
+
+                            <a href="#" class="link news-link">
+                                <p>집에서 물을 절약할 수 있는 스마트 솔루션</p>
+                                <img src="images/right-dark.png" alt="더보기" class="svg">
                             </a>
                         </article>
                         <!-- 추가 뉴스 카드들 -->
@@ -373,11 +702,28 @@
                 </nav>
 
                 <!-- 언어/국가 선택 -->
-                <button class="button language-selector" aria-label="언어 및 국가 변경">
-                    <img src="images/Globe.png" alt="언어" class="svg">
-                    <span class="country">KR</span>
-                    <span class="language">한국어</span>
-                </button>
+                <div class="language-wrap">
+                    <button id="langBtn" class="button language-selector" aria-label="언어 및 국가 변경" aria-haspopup="menu"
+                        aria-expanded="false">
+                        <img src="images/Globe.png" alt="언어" class="svg">
+                        <span class="country">KR</span>
+                        <span class="language">한국어</span>
+                        <svg class="chev" width="12" height="12" aria-hidden="true">
+                            <path d="M2 4l4 4 4-4" stroke="#111" stroke-width="1.5" fill="none" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </button>
+                    <ul id="langMenu" class="lang-menu" role="menu" aria-label="언어 선택" hidden>
+                        <li role="menuitemradio" class="lang-option" data-country="KR" data-lang="ko"
+                            aria-checked="true" tabindex="0">KR — 한국어</li>
+                        <li role="menuitemradio" class="lang-option" data-country="EN" data-lang="en"
+                            aria-checked="false" tabindex="-1">EN — English</li>
+                        <li role="menuitemradio" class="lang-option" data-country="CN" data-lang="zh"
+                            aria-checked="false" tabindex="-1">CN — 中文</li>
+                        <li role="menuitemradio" class="lang-option" data-country="JP" data-lang="ja"
+                            aria-checked="false" tabindex="-1">JP — 日本語</li>
+                    </ul>
+                </div>
 
                 <!-- 저작권 정보 -->
                 <div class="copyright-section">
@@ -404,6 +750,25 @@
         </footer>
     </div>
 
+    <!-- 별점 시스템 스크립트 -->
+    <script>
+        // 페이지 로드 시 모든 별점 업데이트
+        document.addEventListener('DOMContentLoaded', function () {
+            const starsInnerElements = document.querySelectorAll('.stars-inner');
+
+            starsInnerElements.forEach(function (element) {
+                const rating = parseFloat(element.getAttribute('data-rating'));
+
+                // 5점 만점 기준 백분율 계산
+                const starPercentage = (rating / 5) * 100;
+
+                // CSS width 반영
+                element.style.width = Math.round(starPercentage) + '%';
+            });
+        });
+    </script>
+
     <script src="script.js"></script>
 </body>
+
 </html>
