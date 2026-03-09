@@ -1019,6 +1019,14 @@ a {
   color: #484848;
 }
 
+.popup label {
+  display: block;
+  text-align: center;
+  margin: 10px 0 20px 0;
+  font-size: 14px;
+  color: #484848;
+}
+
 .popup-close-btn {
   background: #0058a3;
   color: white;

@@ -369,11 +369,31 @@ cartButtons.forEach(btn => {
 
 /* =======popup========= */
 const popupCloseBtn = document.querySelector(".popup-close-btn");
+const popup = document.querySelector(".popup");
+const dontShowTodayCheckbox = document.getElementById("dont-show-today");
+
 if (popupCloseBtn) {
     popupCloseBtn.addEventListener("click", () => {
-        document.querySelector(".popup").style.display = "none";
+        if (dontShowTodayCheckbox && dontShowTodayCheckbox.checked) {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            localStorage.setItem("popupHiddenUntil", tomorrow.toISOString());
+        }
+        popup.style.display = "none";
     });
 }
+
+// 페이지 로드 시 팝업 표시 여부 확인
+window.addEventListener("load", () => {
+    const hiddenUntil = localStorage.getItem("popupHiddenUntil");
+    if (hiddenUntil) {
+        const hiddenDate = new Date(hiddenUntil);
+        const now = new Date();
+        if (now < hiddenDate) {
+            popup.style.display = "none";
+        }
+    }
+});
 
 // Video control
 const videoContainer = document.querySelector('.video-container');
