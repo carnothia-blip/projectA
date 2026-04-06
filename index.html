@@ -69,10 +69,10 @@
 
 <body>
     <div class="popup">
-        <p>이 프로젝트는 구직용 포트폴리오입니다.<br>이케아와 무관함을 알려드립니다.<br>
+        <p data-i18n="copyright-text">이 프로젝트는 구직용 포트폴리오입니다.<br>이케아와 무관함을 알려드립니다.<br>
             This project is for job application portfolio.<br>Not an official IKEA website.</p>
-        <label><input type="checkbox" id="dont-show-today"> 하루동안 보지 않기</label>
-        <button class="popup-close-btn">닫기</button>
+        <label><input type="checkbox" id="dont-show-today"> <span data-i18n="dont-show-today">하루동안 보지 않기</span></label>
+        <button class="popup-close-btn" data-i18n="close">닫기</button>
     </div>
 
     <!-- PC 메인 컨테이너 -->
@@ -93,7 +93,7 @@
                     <img src="images/Search.png" alt="검색">
                 </button>
                 <div class="combobox">
-                    <input type="search" placeholder="검색어 입력" class="search-input" aria-label="제품 및 아이디어, 신제품 검색">
+                    <input type="search" placeholder="검색어 입력" class="search-input" aria-label="제품 및 아이디어, 신제품 검색" data-i18n-placeholder="search-placeholder">
                 </div>
                 <button class="camera-button" aria-label="이미지로 검색">
                     <img src="images/Camera.png" alt="카메라">
@@ -104,8 +104,8 @@
             <div class="mypage-section">
                 <a href="login/login.html" class="login-button">
                     <img src="images/User.png" alt="로그인 아이콘" class="svg">
-                    <span>Hej! 로그인 하기</span>
-                </button>
+                    <span data-i18n="login-text">Hej! 로그인 하기</span>
+                </a>
                 <a href="wishlist.html" class="link wishlist" aria-label="위시리스트">
                     <img src="images/Heart.png" alt="위시리스트">
                 </a>
@@ -119,26 +119,26 @@
         <nav class="tablist" role="tablist" aria-label="주요 메뉴">
             <button class="tab-item active" role="tab" aria-selected="true" data-tab="all-products">
                 <img src="images/Box.png" alt="">
-                <span>모든 제품</span>
+                <span data-i18n="all-products">모든 제품</span>
             </button>
             <button class="tab-item" role="tab" aria-selected="false" data-tab="room-shopping">
                 <img src="images/Home.png" alt="">
-                <span>공간별 쇼핑하기</span>
+                <span data-i18n="room-shopping">공간별 쇼핑하기</span>
             </button>
             <button class="tab-item" role="tab" aria-selected="false" data-tab="special-price">
-                <span>특별한 가격</span>
+                <span data-i18n="special-price">특별한 가격</span>
             </button>
             <button class="tab-item" role="tab" aria-selected="false" data-tab="news">
-                <span>새로운 소식</span>
+                <span data-i18n="news">새로운 소식</span>
             </button>
             <button class="tab-item" role="tab" aria-selected="false" data-tab="ideas">
-                <span>아이디어</span>
+                <span data-i18n="ideas">아이디어</span>
             </button>
             <button class="tab-item" role="tab" aria-selected="false" data-tab="planning">
-                <span>플래닝 & 스타일링 서비스</span>
+                <span data-i18n="planning">플래닝 & 스타일링 서비스</span>
             </button>
             <button class="tab-item" role="tab" aria-selected="false" data-tab="more">
-                <span>더 보기</span>
+                <span data-i18n="more">더 보기</span>
             </button>
         </nav>
 
@@ -234,7 +234,7 @@
                 </div>
                 <a href="campaign.html" class="link overlay-link">
                     <div class="background gradient-bg">
-                        <p>이케아 봄 세일, 최대 50% 할인!</p>
+                        <p data-i18n="spring-sale">이케아 봄 세일, 최대 50% 할인!</p>
                         <img src="images/Right.png" alt="더보기" class="svg">
                     </div>
                 </a>
@@ -244,7 +244,7 @@
                 <a href="campaign.html" class="link overlay-link">
                     <div class="background gradient-bg">
 
-                        <p>이달의 신제품</p>
+                        <p data-i18n="new-products">이달의 신제품</p>
                         <img src="images/Right.png" alt="더보기" class="svg">
                     </div>
                 </a>
@@ -253,7 +253,7 @@
                 <img src="images/warmair.png" alt="따뜻한 공간을 위한 제안" loading="lazy">
                 <a href="campaign.html" class="link overlay-link">
                     <div class="background gradient-bg">
-                        <p>싱그러운 공기 속, 따뜻한 공간을 위한 제안</p>
+                        <p data-i18n="warm-space">싱그러운 공기 속, 따뜻한 공간을 위한 제안</p>
                         <img src="images/Right.png" alt="더보기" class="svg">
                     </div>
                 </a>
@@ -262,13 +262,13 @@
 
         <!-- 놓치면 아쉬운 특가 섹션 -->
         <section class="section special-price">
-            <h2>놓치면 아쉬운 특가</h2>
+            <h2 data-i18n="miss-this-deal">놓치면 아쉬운 특가</h2>
             <div class="container filter-container">
                 <nav class="list filter-list" role="navigation" aria-label="제품 필터">
-                    <button class="listitem button active" data-filter="new-price">더 낮은 새로운 가격</button>
-                    <button class="listitem button" data-filter="family">IKEA Family 혜택</button>
-                    <button class="listitem button" data-filter="last-chance">마지막 기회</button>
-                    <button class="listitem button" data-filter="lowest">가장 낮은 가격</button>
+                    <button class="listitem button active" data-filter="new-price" data-i18n="new-lower-price">더 낮은 새로운 가격</button>
+                    <button class="listitem button" data-filter="family" data-i18n="ikea-family-benefit">IKEA Family 혜택</button>
+                    <button class="listitem button" data-filter="last-chance" data-i18n="last-chance">마지막 기회</button>
+                    <button class="listitem button" data-filter="lowest" data-i18n="lowest-price">가장 낮은 가격</button>
                 </nav>
             </div>
             <div class="container products-container">
@@ -287,7 +287,7 @@
                                 <span class="price">19,900</span>
                             </div>
                             <div class="original-price-section">
-                                <span>기존가: </span>
+                                <span data-i18n="prev-price">기존가: </span>
                                 <span class="original-price">￦ 24,900</span>
                             </div>
                             <div class="rating-section">
@@ -555,14 +555,14 @@
         <!-- 한 눈에 보는 이케아 소식 -->
         <section class="section news-section">
             <div class="section mask-section">
-                <h2>보다 지속가능한 집을 만드는 팁과 아이디어</h2>
+                <h2 data-i18n="tips-ideas">보다 지속가능한 집을 만드는 팁과 아이디어</h2>
                 <div class="container news-container">
                     <div class="list news-list">
                         <article class="listitem news-card">
                             <img src="images/keep1.png" alt="이케아 매장" loading="lazy">
 
                             <a href="news_article.html" class="link news-link">
-                                <p>지속 가능한 생활을 위한 아이디어</p>
+                                <p data-i18n="sustainable-life">지속 가능한 생활을 위한 아이디어</p>
                                 <img src="images/right-dark.png" alt="더보기" class="svg">
                             </a>
                         </article>
@@ -570,7 +570,7 @@
                             <img src="images/keep2.png" alt="이케아 매장" loading="lazy">
 
                             <a href="news_article.html" class="link news-link">
-                                <p>보다 지속가능한 방식으로 음식을 먹을 수 있는 간편한 방법</p>
+                                <p data-i18n="easy-food">보다 지속가능한 방식으로 음식을 먹을 수 있는 간편한 방법</p>
                                 <img src="images/right-dark.png" alt="더보기" class="svg">
                             </a>
                         </article>
@@ -578,7 +578,7 @@
                             <img src="images/keep3.png" alt="이케아 매장" loading="lazy">
 
                             <a href="news_article.html" class="link news-link">
-                                <p>집에서 에너지를 절약하는 빠른 방법</p>
+                                <p data-i18n="save-energy">집에서 에너지를 절약하는 빠른 방법</p>
                                 <img src="images/right-dark.png" alt="더보기" class="svg">
                             </a>
                         </article>
@@ -586,7 +586,7 @@
                             <img src="images/keep4.png" alt="이케아 매장" loading="lazy">
 
                             <a href="news_article.html" class="link news-link">
-                                <p>집에서 쓰레기를 줄이는 간단한 방법</p>
+                                <p data-i18n="reduce-waste">집에서 쓰레기를 줄이는 간단한 방법</p>
                                 <img src="images/right-dark.png" alt="더보기" class="svg">
                             </a>
                         </article>
@@ -594,7 +594,7 @@
                             <img src="images/keep5.png" alt="이케아 매장" loading="lazy">
 
                             <a href="news_article.html" class="link news-link">
-                                <p>가구의 수명을 연장하는 간단한 방법</p>
+                                <p data-i18n="extend-life">가구의 수명을 연장하는 간단한 방법</p>
                                 <img src="images/right-dark.png" alt="더보기" class="svg">
                             </a>
                         </article>
@@ -602,7 +602,7 @@
                             <img src="images/keep6.png" alt="이케아 매장" loading="lazy">
 
                             <a href="news_article.html" class="link news-link">
-                                <p>집에서 물을 절약할 수 있는 스마트 솔루션</p>
+                                <p data-i18n="save-water">집에서 물을 절약할 수 있는 스마트 솔루션</p>
                                 <img src="images/right-dark.png" alt="더보기" class="svg">
                             </a>
                         </article>
@@ -617,24 +617,24 @@
             <div class="container footer-container">
                 <!-- IKEA Family -->
                 <section class="family-section">
-                    <h3>IKEA Family</h3>
-                    <p>지금 IKEA Family에 무료로 가입하고<br>다양한 멤버 전용 혜택을 누리세요.</p>
-                    <a href="ikea_family.html" class="link-underline">자세히 보기</a><br>
-                    <button class="button black-button">IKEA Family 가입하기</button>
+                    <h3 data-i18n="join-family-title">IKEA Family</h3>
+                    <p data-i18n="join-family-desc">지금 IKEA Family에 무료로 가입하고<br>다양한 멤버 전용 혜택을 누리세요.</p>
+                    <a href="ikea_family.html" class="link-underline" data-i18n="see-details">자세히 보기</a><br>
+                    <button class="button black-button" data-i18n="join-family-btn">IKEA Family 가입하기</button>
                 </section>
 
                 <!-- IKEA Business Network -->
                 <section class="business-section">
-                    <h3>IKEA Business Network</h3>
-                    <p>여러분의 더 나은 비즈니스 환경을 위한<br>다양한 혜택들을 받으세요</p>
-                    <a href="ikea_business.html" class="link-underline">자세히 보기</a><br>
-                    <button class="button black-button">IKEA Business Network 가입하기</button>
+                    <h3 data-i18n="join-business-title">IKEA Business Network</h3>
+                    <p data-i18n="join-business-desc">여러분의 더 나은 비즈니스 환경을 위한<br>다양한 혜택들을 받으세요</p>
+                    <a href="ikea_business.html" class="link-underline" data-i18n="see-details">자세히 보기</a><br>
+                    <button class="button black-button" data-i18n="join-business-btn">IKEA Business Network 가입하기</button>
                 </section>
 
                 <!-- Footer Links -->
                 <nav class="footer-links" role="navigation" aria-label="하단 메뉴">
                     <div class="footer-column">
-                        <h4>고객문의</h4>
+                        <h4 data-i18n="footer-qna">고객문의</h4>
                         <ul>
                             <li><a href="customer_service.html">고객 서비스</a></li>
                             <li><a href="customer_service.html">자주 묻는 질문</a></li>
@@ -648,7 +648,7 @@
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h4>쇼핑하기</h4>
+                        <h4 data-i18n="footer-shopping">쇼핑하기</h4>
                         <ul>
                             <li><a href="shopping_guide.html">쇼핑하기</a></li>
                             <li><a href="shopping_guide.html">전화 주문</a></li>
@@ -662,7 +662,7 @@
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h4>서비스</h4>
+                        <h4 data-i18n="footer-services">서비스</h4>
                         <ul>
                             <li><a href="services.html">이케아 서비스</a></li>
                             <li><a href="services.html">배송 서비스</a></li>
@@ -675,7 +675,7 @@
                         </ul>
                     </div>
                     <div class="footer-column">
-                        <h4>이케아 이야기</h4>
+                        <h4 data-i18n="footer-about">이케아 이야기</h4>
                         <ul>
                             <li><a href="about_ikea.html">브랜드 소개</a></li>
                             <li><a href="about_ikea.html">집에서의 생활</a></li>
@@ -728,25 +728,25 @@
 
                 <!-- 저작권 정보 -->
                 <div class="copyright-section">
-                    <p>© Inter IKEA Systems B.V 1998-2026 <br>
+                    <p data-i18n="copyright-text">© Inter IKEA Systems B.V 1998-2026 <br>
                     이 프로젝트는 구직용 포트폴리오입니다.<br>이케아와 무관함을 알려드립니다. </p>
                 </div>
 
                 <address class="company-info">
-                    <p>이케아코리아 유한회사</p>
-                    <p>주소: (우) 09876 허리도 가늘군 만지면 부러지리 18-8, 1층일까 2층일까 이케아</p>
-                    <p>사업자 등록번호: 189-69-12345 <a href="saupja.html" class="link">사업자정보확인</a></p>
-                    <p>대표자: 도이새</p>
-                    <p>통신판매업 신고: 2026-XXXX-0114</p>
-                    <p>고객지원센터: 1998-2026</p>
+                    <p data-i18n="company-name">이케아코리아 유한회사</p>
+                    <p data-i18n="company-address">주소: (우) 09876 허리도 가늘군 만지면 부러지리 18-8, 1층일까 2층일까 이케아</p>
+                    <p><span data-i18n="company-reg">사업자 등록번호: 189-69-12345</span> <a href="saupja.html" class="link" data-i18n="company-check">사업자정보확인</a></p>
+                    <p data-i18n="company-rep">대표자: 도이새</p>
+                    <p data-i18n="company-report">통신판매업 신고: 2026-XXXX-0114</p>
+                    <p data-i18n="company-csc">고객지원센터: 1998-2026</p>
                 </address>
 
                 <nav class="policy-links" role="navigation" aria-label="정책 및 약관">
-                    <a href="policy.html">개인정보처리방침</a>
-                    <a href="policy.html">쿠키 정책</a>
-                    <a href="policy.html">쿠키 설정</a>
-                    <a href="policy.html">웹사이트 이용약관</a>
-                    <a href="policy.html">Responsible disclosure</a>
+                    <a href="policy.html" data-i18n="policy-privacy">개인정보처리방침</a>
+                    <a href="policy.html" data-i18n="policy-cookie">쿠키 정책</a>
+                    <a href="policy.html" data-i18n="policy-cookie-settings">쿠키 설정</a>
+                    <a href="policy.html" data-i18n="policy-terms">웹사이트 이용약관</a>
+                    <a href="policy.html" data-i18n="policy-disclosure">Responsible disclosure</a>
                 </nav>
             </div>
         </footer>
