@@ -6,186 +6,19 @@ const tabItems = document.querySelectorAll('button.tab-item');
 const filterButtons = document.querySelectorAll('.filter-list .Listitem.Button');
 const cartButtons = document.querySelectorAll('.cart-button');
 const wishlistButtons = document.querySelectorAll('.wishlist-button, .wishlist-btn');
-
-// 검색 기능
-if (searchInput) {
-    searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-            const query = searchInput.value.trim();
-            if (query) {
-                console.log('검색:', query);
-                // 실제 검색 로직 구현
-            }
-        }
-    });
-}
-
-// 이미지 검색 버튼
-if (cameraButton) {
-    cameraButton.addEventListener('click', () => {
-        console.log('이미지 검색 클릭');
-        // 이미지 검색 로직 구현
-    });
-}
-
-// 카테고리 아이템 클릭
-categoryItems.forEach(item => {
-    item.addEventListener('click', (e) => {
-        if (item.tagName === 'A') {
-            e.preventDefault();
-        }
-        const categoryName = item.querySelector('.category-name')?.textContent || item.textContent;
-        const category = item.dataset.category;
-        console.log('카테고리 선택:', categoryName, category);
-        // 카테고리 필터링 로직 구현
-    });
-});
-
-// 탭 전환
-tabItems.forEach(tab => {
-    tab.addEventListener('click', () => {
-        // 모든 탭의 active 및 aria-selected 제거
-        tabItems.forEach(t => {
-            t.classList.remove('active');
-            t.setAttribute('aria-selected', 'false');
-        });
-        // 클릭된 탭에 active 클래스 및 aria-selected 추가
-        tab.classList.add('active');
-        tab.setAttribute('aria-selected', 'true');
-
-        const tabName = tab.textContent.trim();
-        console.log('탭 선택:', tabName);
-        // 탭 전환 로직 구현
-    });
-});
-
-// 필터 버튼
-filterButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        // 모든 필터 버튼의 active 클래스 제거
-        filterButtons.forEach(b => b.classList.remove('active'));
-        // 클릭된 버튼에 active 클래스 추가
-        btn.classList.add('active');
-
-        const filterName = btn.textContent.trim();
-        const filterValue = btn.dataset.filter;
-        console.log('필터 선택:', filterName, filterValue);
-        // 필터링 로직 구현
-    });
-});
-
-// 장바구니 버튼
-cartButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const productCard = btn.closest('.product-card');
-        const productName = productCard.querySelector('h3, .product-name')?.textContent;
-        console.log('장바구니에 추가:', productName);
-
-        // 시각적 피드백
-        btn.style.transform = 'scale(0.9)';
-        setTimeout(() => {
-            btn.style.transform = 'scale(1)';
-        }, 200);
-
-        // 토스트 알림 표시
-        const savedLang = localStorage.getItem("preferredLang") || "ko";
-        const msg = translations[savedLang]?.["add-to-cart"] || '장바구니에 추가되었습니다.';
-        showToast(msg);
-    });
-});
-
-// 위시리스트 버튼
-wishlistButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const productCard = btn.closest('.product-card');
-        const productName = productCard.querySelector('h3, .product-name')?.textContent;
-        console.log('위시리스트에 추가:', productName);
-
-        // 시각적 피드백
-        btn.style.transform = 'scale(0.9)';
-        setTimeout(() => {
-            btn.style.transform = 'scale(1)';
-        }, 200);
-
-        // 토스트 알림 표시
-        const savedLang = localStorage.getItem("preferredLang") || "ko";
-        const msg = translations[savedLang]?.["add-to-wishlist"] || '위시리스트에 추가되었습니다.';
-        showToast(msg);
-    });
-});
-
-['.tablist', '.category-list', '.filter-list'].forEach(selector => {
-    const el = document.querySelector(selector);
-    if (!el) return;
-
-    el.addEventListener('wheel', e => {
-        if (e.deltaY !== 0) {
-            e.preventDefault();
-            el.scrollLeft += e.deltaY;
-        }
-    });
-});
-
-// 언어 선택 버튼
 const languageBtn = document.getElementById('langBtn');
 const langMenu = document.getElementById('langMenu');
 const langOpts = document.querySelectorAll('.lang-option');
-
-if (languageBtn && langMenu) {
-    const closeMenu = () => {
-        languageBtn.setAttribute('aria-expanded', 'false');
-        langMenu.hidden = true;
-    };
-
-    const openMenu = () => {
-        languageBtn.setAttribute('aria-expanded', 'true');
-        langMenu.hidden = false;
-        // 포커스가 첫 선택 항목으로 이동
-        const checked = langMenu.querySelector('[aria-checked="true"]');
-        (checked || langMenu.querySelector('.lang-option')).focus();
-    };
-
-    languageBtn.addEventListener('click', (e) => {
-        const isOpen = languageBtn.getAttribute('aria-expanded') === 'true';
-        (isOpen ? closeMenu() : openMenu());
-    });
-
-    // 메뉴 외 클릭 시 닫기
-    document.addEventListener('click', (e) => {
-        if (!languageBtn.contains(e.target) && !langMenu.contains(e.target)) closeMenu();
-    });
-
-    // 옵션 선택 처리
-    langOpts.forEach(opt => {
-        opt.addEventListener('click', () => selectLang(opt));
-        opt.addEventListener('keydown', (ev) => {
-            if (ev.key === 'Enter' || ev.key === ' ') {
-                ev.preventDefault();
-                selectLang(opt);
-            }
-            if (ev.key === 'ArrowDown') {
-                ev.preventDefault();
-                (opt.nextElementSibling || langOpts[0]).focus();
-            }
-            if (ev.key === 'ArrowUp') {
-                ev.preventDefault();
-                (opt.previousElementSibling || langOpts[langOpts.length-1]).focus();
-            }
-            if (ev.key === 'Escape') {
-                closeMenu();
-                languageBtn.focus();
-            }
-        });
-    });
+const popupCloseBtn = document.querySelector(".popup-close-btn");
+const popup = document.querySelector(".popup");
+const dontShowTodayCheckbox = document.getElementById("dont-show-today");
+const videoContainer = document.querySelector('.video-container');
+const video = document.querySelector('.video-container video');
 
 // 언어별 번역 데이터
 const translations = {
     ko: {
-        "search-placeholder": "검색어 입력",
+        "search-placeholder": "제품 및 아이디어, 신제품 검색",
         "login-text": "Hej! 로그인 하기",
         "all-products": "모든 제품",
         "room-shopping": "공간별 쇼핑하기",
@@ -205,6 +38,8 @@ const translations = {
         "prev-price": "기존가: ",
         "add-to-cart": "장바구니에 추가되었습니다.",
         "add-to-wishlist": "위시리스트에 추가되었습니다.",
+        "add-to-cart-aria": "장바구니에 추가",
+        "add-to-wishlist-aria": "위시리스트에 추가",
         "tips-ideas": "보다 지속가능한 집을 만드는 팁과 아이디어",
         "sustainable-life": "지속 가능한 생활을 위한 아이디어",
         "easy-food": "보다 지속가능한 방식으로 음식을 먹을 수 있는 간편한 방법",
@@ -223,6 +58,36 @@ const translations = {
         "footer-shopping": "쇼핑하기",
         "footer-services": "서비스",
         "footer-about": "이케아 이야기",
+        "footer-ikea-service": "이케아 서비스",
+        "footer-service": "고객 서비스",
+        "footer-faq": "자주 묻는 질문",
+        "footer-support": "고객지원센터",
+        "footer-track": "배송조회",
+        "footer-shipping": "배송 서비스",
+        "footer-return": "교환환불",
+        "footer-warranty": "품질보증",
+        "footer-recall": "제품리콜",
+        "footer-feedback": "피드백",
+        "footer-parts": "부품 신청",
+        "footer-phone-order": "전화 주문",
+        "footer-business": "IKEA for Business",
+        "footer-planning": "셀프 플래닝",
+        "footer-app": "이케아 모바일 앱",
+        "footer-tips": "제품 사용 팁 / 가이드",
+        "footer-brochure": "브로슈어 / 제품 구매 안내",
+        "footer-payment": "결제 옵션",
+        "footer-gift-card": "기프트 카드",
+        "footer-assembly": "조립 서비스",
+        "footer-install": "설치 서비스",
+        "footer-kitchen": "주방 서비스",
+        "footer-consult": "구매 상담 서비스",
+        "footer-styling": "공간 스타일링 서비스",
+        "footer-buyback": "바이백 서비스",
+        "footer-brand": "브랜드 소개",
+        "footer-living": "집에서의 생활",
+        "footer-sustainable": "지속가능한 생활",
+        "footer-newsroom": "뉴스룸",
+        "footer-jobs": "채용정보",
         "copyright-text": "© Inter IKEA Systems B.V 1998-2026 <br>이 프로젝트는 구직용 포트폴리오입니다.<br>이케아와 무관함을 알려드립니다.",
         "company-name": "이케아코리아 유한회사",
         "company-address": "주소: (우) 09876 허리도 가늘군 만지면 부러지리 18-8, 1층일까 2층일까 이케아",
@@ -237,10 +102,57 @@ const translations = {
         "policy-terms": "웹사이트 이용약관",
         "policy-disclosure": "Responsible disclosure",
         "dont-show-today": "하루동안 보지 않기",
-        "close": "닫기"
+        "close": "닫기",
+        "cart-alt": "장바구니",
+        "wishlist-alt": "위시리스트",
+        "globe-alt": "언어 및 국가 선택",
+        "logo-alt": "IKEA 로고",
+        "search-aria": "제품 및 아이디어, 신제품 검색",
+        "search-alt": "검색",
+        "camera-aria": "이미지로 검색",
+        "camera-alt": "카메라",
+        "more-alt": "더 보기",
+        "user-alt": "로그인 아이콘",
+        "p1-name": "NÅLBLECKA 놀블레카",
+        "p1-desc": "주방 조리대 정리용품, 38x13x28 cm",
+        "p2-name": "KUNGSFORS 쿵스포르스",
+        "p2-desc": "주방카트, 60x40 cm",
+        "p3-name": "SILVTJÄRN 실브셰른",
+        "p3-desc": "보관용기",
+        "p4-name": "FABLER 파블레르",
+        "p4-desc": "식기도구 3종",
+        "p5-name": "PLUTTIS 플루티스",
+        "p5-desc": "벽시계, 블랙, 28cm",
+        "p6-name": "NYMÅNE 뉘모네",
+        "p6-desc": "플로어스탠드/독서등",
+        "category-new": "신제품과 컬렉션",
+        "category-storage-furniture": "수납 가구",
+        "category-storage-items": "수납 용품",
+        "category-bed-mattress": "침대/매트리스",
+        "category-sofa": "소파/암체어",
+        "category-table-chair": "식탁/테이블/의자",
+        "category-desk": "책상/사무용의자",
+        "category-kitchen-furniture": "주방가구",
+        "category-kitchenware": "주방용품",
+        "category-lighting": "조명",
+        "category-textile": "텍스타일/러그",
+        "category-curtain": "커튼/블라인드",
+        "category-bathroom": "욕실/화장실 용품",
+        "login-title-page": "로그인",
+        "login-desc-page": "로그인 후 이용해주세요",
+        "login-id-label": "이메일 또는 확인된 휴대폰 번호",
+        "login-id-placeholder": "아이디 입력",
+        "login-pw-label": "비밀번호",
+        "login-pw-placeholder": "비밀번호 입력",
+        "login-btn-page": "로그인",
+        "signup-link": "회원가입",
+        "forgot-pw-link": "비밀번호 찾기",
+        "placeholder-title": "준비 중인 페이지입니다",
+        "placeholder-p": "요청하신 페이지는 현재 준비 중입니다.",
+        "back-to-main": "메인으로 돌아가기"
     },
     en: {
-        "search-placeholder": "Search",
+        "search-placeholder": "Search for products & ideas",
         "login-text": "Hej! Log in",
         "all-products": "All products",
         "room-shopping": "Shop by room",
@@ -260,6 +172,8 @@ const translations = {
         "prev-price": "Previous price: ",
         "add-to-cart": "Added to cart.",
         "add-to-wishlist": "Added to wishlist.",
+        "add-to-cart-aria": "Add to cart",
+        "add-to-wishlist-aria": "Add to wishlist",
         "tips-ideas": "Tips and ideas for a more sustainable home",
         "sustainable-life": "Ideas for a sustainable life",
         "easy-food": "Easy ways to eat in a more sustainable way",
@@ -278,24 +192,101 @@ const translations = {
         "footer-shopping": "Shopping",
         "footer-services": "Services",
         "footer-about": "About IKEA",
+        "footer-ikea-service": "IKEA Service",
+        "footer-service": "Customer Service",
+        "footer-faq": "FAQ",
+        "footer-support": "Support Center",
+        "footer-track": "Track Order",
+        "footer-shipping": "Shipping Service",
+        "footer-return": "Returns",
+        "footer-warranty": "Warranty",
+        "footer-recall": "Recalls",
+        "footer-feedback": "Feedback",
+        "footer-parts": "Spare Parts",
+        "footer-phone-order": "Phone Order",
+        "footer-business": "IKEA for Business",
+        "footer-planning": "Planning",
+        "footer-app": "Mobile App",
+        "footer-tips": "Tips & Guides",
+        "footer-brochure": "Brochures",
+        "footer-payment": "Payment",
+        "footer-gift-card": "Gift Cards",
+        "footer-assembly": "Assembly",
+        "footer-install": "Installation",
+        "footer-kitchen": "Kitchen",
+        "footer-consult": "Consulting",
+        "footer-styling": "Styling",
+        "footer-buyback": "Buy-back",
+        "footer-brand": "About Brand",
+        "footer-living": "Life at Home",
+        "footer-sustainable": "Sustainability",
+        "footer-newsroom": "Newsroom",
+        "footer-jobs": "Careers",
         "copyright-text": "© Inter IKEA Systems B.V 1998-2026 <br>This project is for job application portfolio.<br>Not an official IKEA website.",
         "company-name": "IKEA Korea Ltd.",
-        "company-address": "Address: 18-8, Fresh Air Road, Gyeonggi-do, South Korea",
-        "company-reg": "Business Registration: 189-69-12345",
+        "company-address": "Address: 18-8, Fresh Air Road, South Korea",
+        "company-reg": "Registration: 189-69-12345",
         "company-check": "Business Info",
         "company-rep": "CEO: Doi Sae",
-        "company-report": "Mail Order Report: 2026-XXXX-0114",
-        "company-csc": "Customer Support: 1998-2026",
+        "company-report": "Mail Order: 2026-XXXX-0114",
+        "company-csc": "Support: 1998-2026",
         "policy-privacy": "Privacy Policy",
         "policy-cookie": "Cookie Policy",
         "policy-cookie-settings": "Cookie Settings",
         "policy-terms": "Terms of Use",
         "policy-disclosure": "Responsible disclosure",
         "dont-show-today": "Don't show today",
-        "close": "Close"
+        "close": "Close",
+        "cart-alt": "Cart",
+        "wishlist-alt": "Wishlist",
+        "globe-alt": "Select Language & Country",
+        "logo-alt": "IKEA Logo",
+        "search-aria": "Search for products, ideas and more",
+        "search-alt": "Search",
+        "camera-aria": "Search by image",
+        "camera-alt": "Camera",
+        "more-alt": "More",
+        "user-alt": "Login icon",
+        "p1-name": "NÅLBLECKA",
+        "p1-desc": "Kitchen counter organizer, 38x13x28 cm",
+        "p2-name": "KUNGSFORS",
+        "p2-desc": "Kitchen cart, 60x40 cm",
+        "p3-name": "SILVTJÄRN",
+        "p3-desc": "Storage container",
+        "p4-name": "FABLER",
+        "p4-desc": "3-piece cutlery set",
+        "p5-name": "PLUTTIS",
+        "p5-desc": "Wall clock, black, 28cm",
+        "p6-name": "NYMÅNE",
+        "p6-desc": "Floor lamp/reading lamp",
+        "category-new": "New products & Collections",
+        "category-storage-furniture": "Storage furniture",
+        "category-storage-items": "Storage items",
+        "category-bed-mattress": "Beds & Mattresses",
+        "category-sofa": "Sofas & Armchairs",
+        "category-table-chair": "Tables & Chairs",
+        "category-desk": "Desks & Office chairs",
+        "category-kitchen-furniture": "Kitchen furniture",
+        "category-kitchenware": "Kitchenware",
+        "category-lighting": "Lighting",
+        "category-textile": "Textiles & Rugs",
+        "category-curtain": "Curtains & Blinds",
+        "category-bathroom": "Bathroom products",
+        "login-title-page": "Login",
+        "login-desc-page": "Please log in to continue",
+        "login-id-label": "Email or confirmed mobile number",
+        "login-id-placeholder": "Enter ID",
+        "login-pw-label": "Password",
+        "login-pw-placeholder": "Enter password",
+        "login-btn-page": "Log In",
+        "signup-link": "Sign Up",
+        "forgot-pw-link": "Forgot password",
+        "placeholder-title": "Page Under Construction",
+        "placeholder-p": "The page you requested is currently under development.",
+        "back-to-main": "Back to Home"
     },
     zh: {
-        "search-placeholder": "输入搜索词",
+        "search-placeholder": "搜索产品、灵感和新品",
         "login-text": "Hej! 登录",
         "all-products": "所有产品",
         "room-shopping": "按房间购物",
@@ -315,6 +306,8 @@ const translations = {
         "prev-price": "原价: ",
         "add-to-cart": "已加入购物车。",
         "add-to-wishlist": "已加入愿望清单。",
+        "add-to-cart-aria": "加入购物车",
+        "add-to-wishlist-aria": "加入愿望清单",
         "tips-ideas": "打造更可持续家居的技巧与创意",
         "sustainable-life": "可持续生活的创意",
         "easy-food": "以更可持续的方式进食的简单方法",
@@ -333,31 +326,106 @@ const translations = {
         "footer-shopping": "购物指南",
         "footer-services": "相关服务",
         "footer-about": "关于宜家",
+        "footer-service": "客户服务",
+        "footer-faq": "常见问题",
+        "footer-support": "客户支持",
+        "footer-track": "追踪订单",
+        "footer-return": "退换货",
+        "footer-warranty": "品质保证",
+        "footer-recall": "产品召回",
+        "footer-feedback": "反馈意见",
+        "footer-parts": "备件申请",
+        "footer-phone-order": "电话订购",
+        "footer-business": "宜家企业网络",
+        "footer-planning": "自助规划",
+        "footer-app": "手机应用",
+        "footer-tips": "使用技巧",
+        "footer-brochure": "宣传册",
+        "footer-payment": "支付方式",
+        "footer-gift-card": "礼品卡",
+        "footer-assembly": "组装服务",
+        "footer-install": "安装服务",
+        "footer-kitchen": "厨房服务",
+        "footer-consult": "购买咨询",
+        "footer-styling": "设计服务",
+        "footer-buyback": "回购服务",
+        "footer-brand": "品牌故事",
+        "footer-living": "居家生活",
+        "footer-sustainable": "可持续发展",
+        "footer-newsroom": "新闻中心",
+        "footer-jobs": "加入我们",
         "copyright-text": "© Inter IKEA Systems B.V 1998-2026 <br>本项目用于求职作品集。<br>与宜家官方无关。",
         "company-name": "宜家韩国有限公司",
-        "company-address": "地址：韩国京畿道清新路 18-8",
+        "company-address": "地址：韩国京畿道 18-8",
         "company-reg": "工商注册号：189-69-12345",
         "company-check": "查看工商信息",
         "company-rep": "代表人：都理世",
         "company-report": "电信销售备案：2026-XXXX-0114",
-        "company-csc": "客户支持中心：1998-2026",
+        "company-csc": "客服中心：1998-2026",
         "policy-privacy": "隐私政策",
         "policy-cookie": "Cookie政策",
         "policy-cookie-settings": "Cookie设置",
-        "policy-terms": "网站使用条款",
+        "policy-terms": "使用条款",
         "policy-disclosure": "责任披露",
         "dont-show-today": "今日不再显示",
-        "close": "关闭"
+        "close": "关闭",
+        "cart-alt": "购物车",
+        "wishlist-alt": "愿望清单",
+        "globe-alt": "选择语言与国家",
+        "logo-alt": "宜家 Logo",
+        "search-aria": "搜索产品、灵感等",
+        "search-alt": "搜索",
+        "camera-aria": "按图像搜索",
+        "camera-alt": "相机",
+        "more-alt": "更多",
+        "user-alt": "登录图标",
+        "p1-name": "NÅLBLECKA 诺블레카",
+        "p1-desc": "厨房台面收纳件, 38x13x28 厘米",
+        "p2-name": "KUNGSFORS 康斯福",
+        "p2-desc": "厨房推车, 60x40 厘米",
+        "p3-name": "SILVTJÄRN 希弗特恩",
+        "p3-desc": "储物罐",
+        "p4-name": "FABLER 法布勒",
+        "p4-desc": "餐具3件套",
+        "p5-name": "PLUTTIS 普鲁提斯",
+        "p5-desc": "挂钟, 黑色, 28 厘米",
+        "p6-name": "NYMÅNE 纽墨奈",
+        "p6-desc": "落地灯/阅读灯",
+        "category-new": "新品与系列",
+        "category-storage-furniture": "储物家具",
+        "category-storage-items": "储物用品",
+        "category-bed-mattress": "床/床垫",
+        "category-sofa": "沙发/扶手椅",
+        "category-table-chair": "餐桌/桌子/椅子",
+        "category-desk": "书桌/办公椅",
+        "category-kitchen-furniture": "厨房家具",
+        "category-kitchenware": "厨具",
+        "category-lighting": "灯具",
+        "category-textile": "纺织品/地毯",
+        "category-curtain": "窗帘/百叶窗",
+        "category-bathroom": "浴室用品",
+        "login-title-page": "登录",
+        "login-desc-page": "请登录后继续",
+        "login-id-label": "电子邮箱或已确认的手机号码",
+        "login-id-placeholder": "输入账号",
+        "login-pw-label": "密码",
+        "login-pw-placeholder": "输入密码",
+        "login-btn-page": "登录",
+        "signup-link": "注册",
+        "forgot-pw-link": "忘记密码",
+        "placeholder-title": "页面准备中",
+        "placeholder-p": "您请求的页面目前正在开发中。",
+        "back-to-main": "返回首页"
     },
     ja: {
-        "search-placeholder": "検索ワードを入力",
+        "search-placeholder": "製品、アイデア、新製品を検索",
         "login-text": "Hej! ログイン",
         "all-products": "すべての製品",
         "room-shopping": "部屋別で選ぶ",
         "special-price": "特別価格",
         "news": "最新ニュース",
         "ideas": "アイデア",
-        "planning": "プランニング＆スタイリングサービス",
+        "planning": "プランニング＆スタイ링",
         "more": "もっと見る",
         "spring-sale": "IKEA 春のセール、最大50%OFF！",
         "new-products": "今月の新製品",
@@ -369,43 +437,123 @@ const translations = {
         "lowest-price": "最低価格",
         "prev-price": "旧価格: ",
         "add-to-cart": "カートに追加されました。",
-        "add-to-wishlist": "ウィ시リストに追加されました。",
-        "tips-ideas": "よりサステナブルな家づくりのためのヒントとアイデア",
-        "sustainable-life": "サステナブルな暮らしのためのアイデア",
-        "easy-food": "よりサステナブルな方法で食事を楽しむ簡単な方法",
-        "save-energy": "家でエネルギーを節約する素早い方法",
-        "reduce-waste": "家でゴミを減らす簡単な方法",
-        "extend-life": "家具を長持ちさせる簡単な方法",
-        "save-water": "家で水を節約するスマートなソリューション",
+        "add-to-wishlist": "ウィッシュリストに追加されました。",
+        "add-to-cart-aria": "カートに追加",
+        "add-to-wishlist-aria": "ウィッシュリストに追加",
+        "tips-ideas": "よりサステナブルな家づくりのためのヒント",
+        "sustainable-life": "サステナブルな暮らし",
+        "easy-food": "よりサステ나블な食事",
+        "save-energy": "家でエネルギーを節約",
+        "reduce-waste": "ゴミを減らす方法",
+        "extend-life": "家具を長持ちさせる",
+        "save-water": "水を節約する",
         "join-family-title": "IKEA Family",
-        "join-family-desc": "今すぐIKEA Familyに無料で入会して、さまざまなメンバー限定特典を楽しみましょう。",
+        "join-family-desc": "今すぐIKEA Familyに無料で入会しましょう。",
         "see-details": "詳細を見る",
-        "join-family-btn": "IKEA Familyに入会する",
+        "join-family-btn": "IKEA Familyに入会",
         "join-business-title": "IKEA Business Network",
-        "join-business-desc": "ビジネス環境をより良くするためのさまざまな特典を受け取りましょう",
-        "join-business-btn": "IKEA Business Networkに入会する",
+        "join-business-desc": "ビジネス環境をより良くしましょう",
+        "join-business-btn": "IKEA Business Networkに入会",
         "footer-qna": "カスタマーサービス",
         "footer-shopping": "ショッピングガイド",
         "footer-services": "サービス",
         "footer-about": "イケアについて",
-        "copyright-text": "© Inter IKEA Systems B.V 1998-2026 <br>このプロジェクトは求職用ポートフォリオです。<br>イケア公式とは無関係です。",
+        "footer-ikea-service": "イケアのサービス",
+        "footer-service": "カスタマーサービス",
+        "footer-faq": "よくある質問",
+        "footer-support": "サポートセンター",
+        "footer-track": "配送状況의 확인",
+        "footer-shipping": "配送サービス",
+        "footer-return": "返品・交換",
+        "footer-warranty": "品質保証",
+        "footer-recall": "リコール情報",
+        "footer-feedback": "フィード백",
+        "footer-parts": "スペアパーツ",
+        "footer-phone-order": "電話注文",
+        "footer-business": "IKEA for Business",
+        "footer-planning": "プランニング",
+        "footer-app": "モバイルアプリ",
+        "footer-tips": "使い方のヒント",
+        "footer-brochure": "カタログ",
+        "footer-payment": "お支払い方法",
+        "footer-gift-card": "ギフトカード",
+        "footer-assembly": "組み立て",
+        "footer-install": "設置",
+        "footer-kitchen": "キッチン",
+        "footer-consult": "購入相談",
+        "footer-styling": "デザイン",
+        "footer-buyback": "바이백",
+        "footer-brand": "ブランド紹介",
+        "footer-living": "家での暮らし",
+        "footer-sustainable": "サステナビ리티",
+        "footer-newsroom": "ニュースルーム",
+        "footer-jobs": "採用情報",
+        "copyright-text": "© Inter IKEA Systems B.V 1998-2026 <br>このプロジェクトは求職用ポートフォリオ입니다.<br>イケア公式とは無関係입니다.",
         "company-name": "イケア・コリア有限会社",
-        "company-address": "住所：韓国京畿道爽やか路 18-8",
-        "company-reg": "事業者登録番号：189-69-12345",
-        "company-check": "事業者情報を確認",
+        "company-address": "住所：韓国京畿道 18-8",
+        "company-reg": "登録番号：189-69-12345",
+        "company-check": "企業情報",
         "company-rep": "代表者：ド・イセ",
-        "company-report": "通信販売業届出：2026-XXXX-0114",
-        "company-csc": "カスタマーサポートセンター：1998-2026",
+        "company-report": "通信販売：2026-XXXX-0114",
+        "company-csc": "カスタマーセンター：1998-2026",
         "policy-privacy": "個人情報保護方針",
         "policy-cookie": "クッキーポリシー",
         "policy-cookie-settings": "クッキー設定",
-        "policy-terms": "ウェブサイト利用規約",
+        "policy-terms": "웹사이트 이용약관",
         "policy-disclosure": "責任ある開示",
         "dont-show-today": "今日一日表示しない",
-        "close": "閉じる"
+        "close": "閉じる",
+        "cart-alt": "ショッピングカート",
+        "wishlist-alt": "ウィッシュリスト",
+        "globe-alt": "言語と国の選択",
+        "logo-alt": "IKEA ロゴ",
+        "search-aria": "製品、アイデアなどを検索",
+        "search-alt": "検索",
+        "camera-aria": "画像で検索",
+        "camera-alt": "カメラ",
+        "more-alt": "もっと見る",
+        "user-alt": "ログインアイコン",
+        "p1-name": "NÅLBLECKA ノールブレッカ",
+        "p1-desc": "キッチンワークトップ用収納, 38x13x28 cm",
+        "p2-name": "KUNGSFORS クング스フォルス",
+        "p2-desc": "キッチンワゴン, 60x40 cm",
+        "p3-name": "SILVTJÄRN シルヴティェルン",
+        "p3-desc": "容器",
+        "p4-name": "FABLER ファブレル",
+        "p4-desc": "カトラリー3点セット",
+        "p5-name": "PLUTTIS プルッ티스",
+        "p5-desc": "壁掛け時計, ブラック, 28 cm",
+        "p6-name": "NYMÅNE ニーモーネ",
+        "p6-desc": "フロアランプ/読書ランプ",
+        "category-new": "新製品とコレクション",
+        "category-storage-furniture": "収納家具",
+        "category-storage-items": "収納用品",
+        "category-bed-mattress": "ベッド＆マットレス",
+        "category-sofa": "ソファ＆アームチェア",
+        "category-table-chair": "テーブル＆チェア",
+        "category-desk": "デスク＆オフィスチェア",
+        "category-kitchen-furniture": "キッチン家具",
+        "category-kitchenware": "キッチン用品",
+        "category-lighting": "照明",
+        "category-textile": "テキスタイル＆ラグ",
+        "category-curtain": "カーテン＆ブラインド",
+        "category-bathroom": "バスルーム用品",
+        "login-title-page": "ログイン",
+        "login-desc-page": "ログインして続行してください",
+        "login-id-label": "メールアドレスまたは携帯電話番号",
+        "login-id-placeholder": "IDを入力",
+        "login-pw-label": "パスワード",
+        "login-pw-placeholder": "パスワードを入力",
+        "login-btn-page": "ログイン",
+        "signup-link": "新規登録",
+        "forgot-pw-link": "パスワードをお忘れの方",
+        "placeholder-title": "準備中のページです",
+        "placeholder-p": "リクエストされたページは現在準備中です。",
+        "back-to-main": "メインに戻る"
     }
 };
 
+// 번역 적용 함수
 function applyTranslations(lang) {
     const elements = document.querySelectorAll("[data-i18n]");
     elements.forEach(el => {
@@ -423,142 +571,68 @@ function applyTranslations(lang) {
         }
     });
 
-    // Save language preference
+    const ariaLabels = document.querySelectorAll("[data-i18n-aria]");
+    ariaLabels.forEach(el => {
+        const key = el.getAttribute("data-i18n-aria");
+        if (translations[lang] && translations[lang][key]) {
+            el.setAttribute("aria-label", translations[lang][key]);
+        }
+    });
+
+    const altTexts = document.querySelectorAll("[data-i18n-alt]");
+    altTexts.forEach(el => {
+        const key = el.getAttribute("data-i18n-alt");
+        if (translations[lang] && translations[lang][key]) {
+            el.alt = translations[lang][key];
+        }
+    });
+
     localStorage.setItem("preferredLang", lang);
 }
 
-// 기존 selectLang 함수를 수정하여 번역 적용 호출
+// 메뉴 닫기 함수
+const closeMenu = () => {
+    if (languageBtn && langMenu) {
+        languageBtn.setAttribute('aria-expanded', 'false');
+        langMenu.hidden = true;
+    }
+};
+
+// 메뉴 열기 함수
+const openMenu = () => {
+    if (languageBtn && langMenu) {
+        languageBtn.setAttribute('aria-expanded', 'true');
+        langMenu.hidden = false;
+        const checked = langMenu.querySelector('[aria-checked="true"]');
+        (checked || langMenu.querySelector('.lang-option')).focus();
+    }
+};
+
+// 언어 선택 처리 함수
 function selectLang(opt) {
     const country = opt.dataset.country;
     const lang = opt.dataset.lang;
-    // UI 업데이트
-    document.querySelector('.language-selector .country').textContent = country;
-    const langDisplay = opt.textContent.split('—')[1].trim();
-    document.querySelector('.language-selector .language').textContent = langDisplay;
-    // aria 업데이트
-    langOpts.forEach(o => o.setAttribute('aria-checked', 'false'));
+    
+    const countryEl = document.querySelector('.language-selector .country');
+    const langEl = document.querySelector('.language-selector .language');
+    if (countryEl) countryEl.textContent = country;
+    if (langEl) {
+        const langDisplay = opt.textContent.split('—')[1]?.trim() || opt.textContent.trim();
+        langEl.textContent = langDisplay;
+    }
+    
+    if (langOpts) {
+        langOpts.forEach(o => o.setAttribute('aria-checked', 'false'));
+    }
     opt.setAttribute('aria-checked', 'true');
-    // 문서의 lang 속성 업데이트
     document.documentElement.lang = lang;
     
-    // 번역 적용
     applyTranslations(lang);
-
-    // 닫기
     closeMenu();
-    languageBtn.focus();
-    console.log('언어 선택:', country, lang);
+    if (languageBtn) languageBtn.focus();
 }
 
-// 페이지 로드 시 저장된 언어 설정 적용
-window.addEventListener('DOMContentLoaded', () => {
-    const savedLang = localStorage.getItem("preferredLang") || "ko";
-    if (savedLang !== "ko") {
-        applyTranslations(savedLang);
-        // 언어 선택기 UI도 업데이트
-        const opt = Array.from(langOpts).find(o => o.dataset.lang === savedLang);
-        if (opt) {
-            const country = opt.dataset.country;
-            const langDisplay = opt.textContent.split('—')[1].trim();
-            document.querySelector('.language-selector .country').textContent = country;
-            document.querySelector('.language-selector .language').textContent = langDisplay;
-            langOpts.forEach(o => o.setAttribute('aria-checked', 'false'));
-            opt.setAttribute('aria-checked', 'true');
-            document.documentElement.lang = savedLang;
-        }
-    }
-});
-
-// 기존 코드와 합치기 위해, selectLang 함수 정의 부분을 찾아서 교체해야 함.
-// 이미 script.js에 selectLang이 있으므로, 이 부분만 따로 처리하거나 전체를 다시 쓰는 것이 좋음.
-// 여기서는 selectLang 함수 자체를 덮어씌우는 방식으로 제안됨.
-
-// (나머지 기존 script.js 코드들이 아래에 이어짐)
-
-    // 키보드로 버튼에서 바로 열기
-    languageBtn.addEventListener('keydown', (ev) => {
-        if (ev.key === 'ArrowDown' || ev.key === 'Enter' || ev.key === ' ') {
-            ev.preventDefault();
-            openMenu();
-        }
-        if (ev.key === 'Escape') {
-            closeMenu();
-        }
-    });
-}
-
-// 스크롤 시 헤더 고정 (옵션)
-let lastScrollTop = 0;
-const header = document.querySelector('header.header-container');
-
-if (header) {
-    window.addEventListener('scroll', () => {
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-        if (scrollTop > lastScrollTop && scrollTop > 100) {
-            // 아래로 스크롤
-            header.style.transform = 'translateY(-100%)';
-        } else {
-            // 위로 스크롤
-            header.style.transform = 'translateY(0)';
-        }
-
-        lastScrollTop = scrollTop;
-    });
-}
-
-// 이미지 레이지 로딩
-if ('IntersectionObserver' in window) {
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const img = entry.target;
-                if (img.dataset.src) {
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                }
-                observer.unobserve(img);
-            }
-        });
-    });
-
-    document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
-    });
-}
-
-// 페이지 로드 완료 시
-window.addEventListener('DOMContentLoaded', () => {
-    console.log('페이지 로드 완료');
-
-    // 초기 애니메이션 등 추가 가능
-});
-
-// 반응형 메뉴 토글 (모바일용 - 필요시)
-function toggleMobileMenu() {
-    const menu = document.querySelector('nav.Tablist');
-    if (menu) {
-        menu.classList.toggle('mobile-open');
-        const isOpen = menu.classList.contains('mobile-open');
-        menu.setAttribute('aria-expanded', isOpen);
-    }
-}
-
-// 장바구니/위시리스트 카운트 업데이트 (예시)
-function updateCartCount(count) {
-    const cartIcon = document.querySelector('.cart');
-    if (cartIcon && count > 0) {
-        let badge = cartIcon.querySelector('.count-badge');
-        if (!badge) {
-            badge = document.createElement('span');
-            badge.className = 'count-badge';
-            cartIcon.appendChild(badge);
-        }
-        badge.textContent = count;
-    }
-}
-
-// 간단한 토스트 알림
+// 토스트 알림 함수
 function showToast(message, duration = 3000) {
     const toast = document.createElement('div');
     toast.className = 'toast';
@@ -576,83 +650,115 @@ function showToast(message, duration = 3000) {
         z-index: 9999;
         animation: slideUp 0.3s ease;
     `;
-
     document.body.appendChild(toast);
-
     setTimeout(() => {
         toast.style.animation = 'slideDown 0.3s ease';
         setTimeout(() => {
-            document.body.removeChild(toast);
+            if (document.body.contains(toast)) document.body.removeChild(toast);
         }, 300);
     }, duration);
 }
 
-// CSS 애니메이션 추가
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes slideUp {
-        from {
-            opacity: 0;
-            transform: translateX(-50%) translateY(20px);
+// 이벤트 리스너 등록
+if (searchInput) {
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            const query = searchInput.value.trim();
+            if (query) console.log('검색:', query);
         }
-        to {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-    }
+    });
+}
 
-    @keyframes slideDown {
-        from {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
-        to {
-            opacity: 0;
-            transform: translateX(-50%) translateY(20px);
-        }
-    }
+if (cameraButton) {
+    cameraButton.addEventListener('click', () => console.log('이미지 검색 클릭'));
+}
 
-    .count-badge {
-        position: absolute;
-        top: -4px;
-        right: -4px;
-        background: #e00751;
-        color: white;
-        border-radius: 50%;
-        width: 18px;
-        height: 18px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 10px;
-        font-weight: 700;
-    }
-
-    .header-container {
-        transition: transform 0.3s ease;
-    }
-
-    .mobile-open {
-        max-height: 400px;
-        overflow-y: auto;
-    }
-`;
-document.head.appendChild(style);
-
-// 예시: 장바구니 추가 시 토스트 표시
-cartButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-        const savedLang = localStorage.getItem("preferredLang") || "ko";
-        const msg = translations[savedLang]?.["add-to-cart"] || '장바구니에 추가되었습니다';
-        showToast(msg);
-        // updateCartCount(현재개수 + 1);
+categoryItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+        const categoryName = item.querySelector('.category-name')?.textContent || item.textContent;
+        const category = item.dataset.category;
+        console.log('카테고리 선택:', categoryName, category);
     });
 });
 
-/* =======popup========= */
-const popupCloseBtn = document.querySelector(".popup-close-btn");
-const popup = document.querySelector(".popup");
-const dontShowTodayCheckbox = document.getElementById("dont-show-today");
+tabItems.forEach(tab => {
+    tab.addEventListener('click', () => {
+        tabItems.forEach(t => {
+            t.classList.remove('active');
+            t.setAttribute('aria-selected', 'false');
+        });
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+    });
+});
+
+filterButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        filterButtons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    });
+});
+
+cartButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const savedLang = localStorage.getItem("preferredLang") || "ko";
+        const msg = translations[savedLang]?.["add-to-cart"] || '장바구니에 추가되었습니다.';
+        showToast(msg);
+    });
+});
+
+wishlistButtons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const savedLang = localStorage.getItem("preferredLang") || "ko";
+        const msg = translations[savedLang]?.["add-to-wishlist"] || '위시리스트에 추가되었습니다.';
+        showToast(msg);
+    });
+});
+
+if (languageBtn) {
+    languageBtn.addEventListener('click', (e) => {
+        const isOpen = languageBtn.getAttribute('aria-expanded') === 'true';
+        (isOpen ? closeMenu() : openMenu());
+    });
+
+    languageBtn.addEventListener('keydown', (ev) => {
+        if (ev.key === 'ArrowDown' || ev.key === 'Enter' || ev.key === ' ') {
+            ev.preventDefault();
+            openMenu();
+        }
+        if (ev.key === 'Escape') closeMenu();
+    });
+}
+
+document.addEventListener('click', (e) => {
+    if (languageBtn && langMenu && !languageBtn.contains(e.target) && !langMenu.contains(e.target)) closeMenu();
+});
+
+langOpts.forEach(opt => {
+    opt.addEventListener('click', () => selectLang(opt));
+    opt.addEventListener('keydown', (ev) => {
+        if (ev.key === 'Enter' || ev.key === ' ') {
+            ev.preventDefault();
+            selectLang(opt);
+        }
+        if (ev.key === 'ArrowDown') {
+            ev.preventDefault();
+            (opt.nextElementSibling || langOpts[0]).focus();
+        }
+        if (ev.key === 'ArrowUp') {
+            ev.preventDefault();
+            (opt.previousElementSibling || langOpts[langOpts.length-1]).focus();
+        }
+        if (ev.key === 'Escape') {
+            closeMenu();
+            if (languageBtn) languageBtn.focus();
+        }
+    });
+});
 
 if (popupCloseBtn) {
     popupCloseBtn.addEventListener("click", () => {
@@ -661,61 +767,89 @@ if (popupCloseBtn) {
             tomorrow.setDate(tomorrow.getDate() + 1);
             localStorage.setItem("popupHiddenUntil", tomorrow.toISOString());
         }
-        popup.style.display = "none";
+        if (popup) popup.style.display = "none";
     });
 }
-
-// 페이지 로드 시 팝업 표시 여부 확인
-window.addEventListener("load", () => {
-    const hiddenUntil = localStorage.getItem("popupHiddenUntil");
-    if (hiddenUntil) {
-        const hiddenDate = new Date(hiddenUntil);
-        const now = new Date();
-        if (now < hiddenDate) {
-            popup.style.display = "none";
-        }
-    }
-});
-
-// Video control
-const videoContainer = document.querySelector('.video-container');
-const video = document.querySelector('.video-container video');
 
 if (videoContainer && video) {
-  // Start playing the video initially
-  video.play().catch(error => {
-    console.log("Autoplay was prevented: ", error);
-    // Autoplay was prevented.
-    // Show a "Play" button to let the user start playback.
-  });
-
-  videoContainer.addEventListener('click', () => {
-    if (video.paused) {
-      video.play();
-    } else {
-      video.pause();
-    }
-  });
+    video.play().catch(() => {});
+    videoContainer.addEventListener('click', () => {
+        (video.paused ? video.play() : video.pause());
+    });
 }
-/* ========================================
-   별점 시스템 (Star Rating System)
-   ======================================== */
 
-// 페이지 로드 시 모든 별점 업데이트
-document.addEventListener('DOMContentLoaded', function() {
-    const starsInnerElements = document.querySelectorAll('.stars-inner');
+// 스크롤 시 헤더 고정
+let lastScrollTop = 0;
+const header = document.querySelector('header.header-container');
+if (header) {
+    window.addEventListener('scroll', () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop && scrollTop > 100) {
+            header.style.transform = 'translateY(-100%)';
+        } else {
+            header.style.transform = 'translateY(0)';
+        }
+        lastScrollTop = scrollTop;
+    });
+}
+
+// 초기화
+window.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem("preferredLang") || "ko";
+    applyTranslations(savedLang);
     
-    starsInnerElements.forEach(function(element) {
+    if (langOpts && langOpts.length > 0) {
+        const opt = Array.from(langOpts).find(o => o.dataset.lang === savedLang);
+        if (opt) {
+            const country = opt.dataset.country;
+            const langDisplay = opt.textContent.split('—')[1]?.trim() || opt.textContent.trim();
+            const countryEl = document.querySelector('.language-selector .country');
+            const langEl = document.querySelector('.language-selector .language');
+            if (countryEl) countryEl.textContent = country;
+            if (langEl) langEl.textContent = langDisplay;
+            langOpts.forEach(o => o.setAttribute('aria-checked', 'false'));
+            opt.setAttribute('aria-checked', 'true');
+        }
+    }
+    document.documentElement.lang = savedLang;
+
+    // 별점 업데이트
+    const starsInnerElements = document.querySelectorAll('.stars-inner');
+    starsInnerElements.forEach(element => {
         const rating = parseFloat(element.getAttribute('data-rating'));
-        
         if (!isNaN(rating)) {
-            // 5점 만점 기준 백분율 계산
-            const starPercentage = (rating / 5) * 100;
-            
-            // CSS width 반영
-            element.style.width = Math.round(starPercentage) + '%';
+            element.style.width = Math.round((rating / 5) * 100) + '%';
         }
     });
-    
-    console.log('별점 시스템 초기화 완료');
+
+    // 팝업 숨김 확인
+    const hiddenUntil = localStorage.getItem("popupHiddenUntil");
+    if (hiddenUntil && new Date() < new Date(hiddenUntil) && popup) {
+        popup.style.display = "none";
+    }
 });
+
+// 가로 스크롤 휠 처리
+['.tablist', '.category-list', '.filter-list'].forEach(selector => {
+    const el = document.querySelector(selector);
+    if (el) {
+        el.addEventListener('wheel', e => {
+            if (e.deltaY !== 0) {
+                e.preventDefault();
+                el.scrollLeft += e.deltaY;
+            }
+        });
+    }
+});
+
+// CSS 애니메이션 추가 (중복 방지 체크 생략 - 필요시 추가)
+if (!document.getElementById('custom-animations')) {
+    const style = document.createElement('style');
+    style.id = 'custom-animations';
+    style.textContent = `
+        @keyframes slideUp { from { opacity: 0; transform: translateX(-50%) translateY(20px); } to { opacity: 1; transform: translateX(-50%) translateY(0); } }
+        @keyframes slideDown { from { opacity: 1; transform: translateX(-50%) translateY(0); } to { opacity: 0; transform: translateX(-50%) translateY(20px); } }
+        .header-container { transition: transform 0.3s ease; }
+    `;
+    document.head.appendChild(style);
+}

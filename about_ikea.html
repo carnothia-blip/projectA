@@ -12,7 +12,7 @@
     <header class="container header-container">
         <a href="index.html" class="link ikea-logo">
             <div class="ikea-svg-container">
-                <img src="images/ikeawhite.png" alt="IKEA 로고" class="ikea-svg">
+                <img src="images/ikeawhite.png" alt="IKEA 로고" class="ikea-svg" data-i18n-alt="logo-alt">
             </div>
         </a>
         <div class="search-box">
@@ -20,34 +20,35 @@
                 <img src="images/Search.png" alt="검색">
             </button>
             <div class="combobox">
-                <input type="search" placeholder="검색어 입력" class="search-input">
+                <input type="search" placeholder="검색어 입력" class="search-input" data-i18n-placeholder="search-placeholder">
             </div>
         </div>
         <div class="mypage-section">
              <a href="login/login.html" class="login-button">
-                <img src="images/User.png" alt="로그인" class="svg">
+                <img src="images/User.png" alt="로그인" class="svg" data-i18n-alt="user-alt">
             </a>
             <a href="wishlist.html" class="link wishlist">
-                <img src="images/Heart.png" alt="위시리스트">
+                <img src="images/Heart.png" alt="위시리스트" data-i18n-alt="wishlist-alt">
             </a>
             <a href="cart.html" class="link cart">
-                <img src="images/ShoppingBag.png" alt="장바구니">
+                <img src="images/ShoppingBag.png" alt="장바구니" data-i18n-alt="cart-alt">
             </a>
         </div>
     </header>
     <main class="container placeholder-main">
         <div class="placeholder-content">
-        <h1>준비 중인 페이지입니다</h1>
-        <p>요청하신 페이지는 현재 준비 중입니다.</p>
-        <a href="index.html" class="button black-button back-button">메인으로 돌아가기</a>
+        <h1 data-i18n="placeholder-title">준비 중인 페이지입니다</h1>
+        <p data-i18n="placeholder-p">요청하신 페이지는 현재 준비 중입니다.</p>
+        <a href="index.html" class="button black-button back-button" data-i18n="back-to-main">메인으로 돌아가기</a>
             </div>
     </main>
     <footer class="footer">
         <div class="container footer-container">
             <div class="copyright-section">
-                <p>© Inter IKEA Systems B.V 1999-2025</p>
+                <p data-i18n="copyright-text">© Inter IKEA Systems B.V 1999-2025</p>
             </div>
         </div>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
